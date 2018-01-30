@@ -435,7 +435,7 @@ Private Sub cmdPrint_Click()
          If lok = True Then
             Dim lSelection As String
             lSelection = frm.SetSelection
-            frm.SetSelection = lSelection & " AND ({AccessOpen.fk_Entity}= " & lstLocal.ItemData(lstLocal.ListIndex) & ")"
+            frm.SetSelection = lSelection & " AND ({fk_Entity}= " & lstLocal.ItemData(lstLocal.ListIndex) & ")"
             SetHourGlass Me
             frm.WindowState = vbMaximized
             frm.Show
@@ -523,7 +523,7 @@ Private Function Event_Prepare() As Boolean
             lSignal = " = "
          End If
          
-         frm.SetSelection = "{Event.Date_Event}" & lSignal & ExtractDate(mskFinal)
+         frm.SetSelection = "{Date_Event}" & lSignal & ExtractDate(mskFinal)
          hasDate = True
       Else
          MsgBox "Data Final não é válida!", sxExclamation, sxProname
@@ -533,8 +533,8 @@ Private Function Event_Prepare() As Boolean
    ElseIf IsDate(mskFinal) And IsDate(mskInicial) Then
    
       If DateDiff("n", mskInicial, mskFinal) >= 0 Then
-         frm.SetSelection = "{Event.Date_Event}>=" & ExtractDate(mskInicial) & " AND " & _
-                            "{Event.Date_Event}<=" & ExtractDate(mskFinal)
+         frm.SetSelection = "{Date_Event}>=" & ExtractDate(mskInicial) & " AND " & _
+                            "{Date_Event}<=" & ExtractDate(mskFinal)
                             
          hasDate = True
       Else
@@ -554,12 +554,12 @@ Private Function Event_Prepare() As Boolean
       If chkTipo(i).Value = vbChecked Then
          If hasTipo Then
             lformula = frm.SetSelection
-            frm.SetSelection = lformula & " OR {Sensor.Tipo_Sensor}='" & strTipo(i) & "'"
+            frm.SetSelection = lformula & " OR {Tipo_Sensor}='" & strTipo(i) & "'"
          ElseIf hasDate Then
             lformula = frm.SetSelection
-            frm.SetSelection = lformula & " AND ({Sensor.Tipo_Sensor}='" & strTipo(i) & "'"
+            frm.SetSelection = lformula & " AND ({Tipo_Sensor}='" & strTipo(i) & "'"
          Else
-            frm.SetSelection = "({Sensor.Tipo_Sensor}='" & strTipo(i) & "'"
+            frm.SetSelection = "({Tipo_Sensor}='" & strTipo(i) & "'"
          End If
          hasTipo = True
       End If
@@ -610,7 +610,7 @@ Private Function Service_Prepare(ByRef lInit As String, ByRef lEnd As String) As
     
     If DateDiff("s", lInit0, lEnd0) >= 0 Then
         'Sai da função sem erro
-        frm.SetSelection = "{Service.Date_Service} >= #" & lInit & "# AND {Service.Date_Service} <= #" & lEnd & "#"
+        frm.SetSelection = "{Date_Service} >= #" & lInit & "# AND {Date_Service} <= #" & lEnd & "#"
         Service_Prepare = True
     Else
         Me.Hide
@@ -651,15 +651,15 @@ Private Function Access_Prepare(ByVal fAll As Boolean) As Boolean
       
       If fAll Then
          lreport1 = DateDiff("d", CDate("01/01/2000"), mskFinal)
-         frm.SetSelection = "{AccessOpen.Report}=" & lreport1
+         frm.SetSelection = "{Report}=" & lreport1
       ElseIf Not IsDate(mskInicial) Then
          lreport1 = DateDiff("d", CDate("01/01/2000"), mskFinal)
-         frm.SetSelection = "{AccessOpen.Report}<=" & lreport1
+         frm.SetSelection = "{Report}<=" & lreport1
       Else
          lreport1 = DateDiff("d", CDate("01/01/2000"), mskInicial)
          lreport2 = DateDiff("d", CDate("01/01/2000"), mskFinal)
-         frm.SetSelection = "{AccessOpen.Report}>=" & lreport1 & _
-                                 " AND {AccessOpen.Report}<= " & lreport2
+         frm.SetSelection = "{Report}>=" & lreport1 & _
+                                 " AND {Report}<= " & lreport2
       End If
       
       Dim lOL As String, lOH As String, lCL As String, lCH As String

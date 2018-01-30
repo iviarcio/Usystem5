@@ -656,6 +656,7 @@ End Sub
 Private Sub pctPrinterSettings_Click()
    On Error Resume Next
    Report.PrinterSetup Me.hWnd
+   On Error GoTo 0
 End Sub
 
 

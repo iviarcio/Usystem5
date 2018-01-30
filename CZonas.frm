@@ -100,6 +100,7 @@ Begin VB.Form frmCZonas
       Splits(0)._ColumnProps(31)=   "Column(4).Order=5"
       Splits.Count    =   1
       PrintInfos(0)._StateFlags=   0
+      PrintInfos(0).Name=   "piInternal 0"
       PrintInfos(0).PageHeaderFont=   "Size=11.25,Charset=0,Weight=400,Underline=0,Italic=0,Strikethrough=0,Name=Tahoma"
       PrintInfos(0).PageFooterFont=   "Size=11.25,Charset=0,Weight=400,Underline=0,Italic=0,Strikethrough=0,Name=Tahoma"
       PrintInfos(0).PageHeaderHeight=   0
@@ -321,6 +322,7 @@ Private Sub tdbg1_SelChange(Cancel As Integer)
    Dim tEntity As clsEntity
    On Error Resume Next
    Set tEntity = lstEntity.Item(tdbg1.Columns(0))
+   On Error GoTo 0
    If Not (tEntity Is Nothing) Then
       Load frmEntity
       With frmEntity

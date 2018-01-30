@@ -542,6 +542,7 @@ Begin VB.Form frmDevices
       Splits(0)._ColumnProps(49)=   "Column(7).Order=8"
       Splits.Count    =   1
       PrintInfos(0)._StateFlags=   0
+      PrintInfos(0).Name=   "piInternal 0"
       PrintInfos(0).PageHeaderFont=   "Size=11.25,Charset=0,Weight=400,Underline=0,Italic=0,Strikethrough=0,Name=Tahoma"
       PrintInfos(0).PageFooterFont=   "Size=11.25,Charset=0,Weight=400,Underline=0,Italic=0,Strikethrough=0,Name=Tahoma"
       PrintInfos(0).PageHeaderHeight=   0
@@ -777,6 +778,7 @@ Private Sub Form_Activate()
             mList(mRow, 5) = .comm
             mList(mRow, 6) = Format(.evDate, "dd/mm")
             mList(mRow, 7) = Format(.evDate, "hh:mm:ss")
+            On Error GoTo 0
          End With
          mRow = mRow + 1
       Next

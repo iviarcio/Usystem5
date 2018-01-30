@@ -615,6 +615,7 @@ Private Sub Load_Entities()
          .CloseLast = rsEntity("CloseLast")
          .flagInativo = False
       End With
+      On Error GoTo 0
       lstEntity.Add Item:=tEntity, Key:=CStr(rsEntity("cp_Entity"))
       rsEntity.MoveNext
       IncProgress
@@ -732,7 +733,7 @@ Private Sub Load_Percursos()
          .valDom = rsPercurso("ValDomFer")
          .status = rsPercurso("Status")
       End With
-      
+      On Error GoTo 0
       'Rotina que carrega os Rorários das Rondas
       tPercurso.Load_Horarios
       
@@ -763,6 +764,7 @@ Private Sub Load_PTI()
          .sProduct = rsPTI("Produto")
          .sDescription = rsPTI("Descricao")
       End With
+      On Error GoTo 0
       lstPTI.Add Item:=tPTI, Key:=rsPTI("PTI")
       rsPTI.MoveNext
       IncProgress
@@ -812,6 +814,7 @@ Private Sub Event_Populate()
       IncProgress
    Wend
    rsEvent.Close
+   On Error GoTo 0
 End Sub
 
 Public Sub Data_CleanUp()
@@ -885,6 +888,7 @@ Public Sub DBase_ReOpen(ByVal fIsRestore As Boolean, Optional fPiso As Integer)
       ForNet.Load_Pisos
       On Error Resume Next
       ForNet.ActiveForm.Entity_Refresh
+      On Error GoTo 0
    End If
    
    Unload frmSplash

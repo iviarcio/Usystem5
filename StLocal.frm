@@ -375,4 +375,5 @@ Private Sub tdbg1_SelChange(Cancel As Integer)
       Set frmZonas.lEntity = tEntity
       frmZonas.Show
    End If
+   On Error GoTo 0
 End Sub

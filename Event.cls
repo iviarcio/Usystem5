@@ -273,7 +273,7 @@ Public Sub TreatSensor()
                 lEntity.vDescr & " descartado por duplicidade!", sxImgInform, False, True
                 Exit Sub
             End If
-         ElseIf .ShowCamera Then
+         ElseIf .ShowEvent_in_Camera Then
             ShowCamera tModule, lEntity.vDescr
             If tModule.popup And .SpotNumber <> -1 Then
                .SpotNumber = FreeSpotNumber(.SpotNumber)
@@ -348,13 +348,13 @@ Public Sub TreatReceiver()
       .mLastAtiv = evDate
       .NivelSinal = ssLevel
       'Trata Ruído Excessivo
-      Dim ruido As Byte
-      ruido = status0 And &H90
-      If ruido = &H80 Then
+      Dim has_ruido As Byte
+      has_ruido = status0 And &H90
+      If has_ruido = &H80 And Not .SRuido Then
          evStr = "Ruído excessivo em Receptor. "
          .TreatRuido True, Me
          flag = True
-      ElseIf ruido = 0 Then
+      ElseIf has_ruido = 0 Then
          evStr = ""
          .TreatRuido False, Me
       End If

@@ -149,7 +149,6 @@ Begin VB.Form frmRegister
          EndProperty
          Height          =   315
          Left            =   8400
-         Locked          =   -1  'True
          MaxLength       =   15
          TabIndex        =   64
          Text            =   "No. Zona"
@@ -1253,6 +1252,7 @@ Private rsSensor As New ADODB.Recordset
 Private Const invalidDataSet As Integer = 9999
 Private Const invalidUpdate  As Integer = 9898
 Private Const invalidLoadReg As Integer = 9797
+Private Const invalidSaveReg As Integer = 3021
 
 Private Sub SetAppearence(btn As AlphaImgCtl, flag As Boolean)
    If flag Then
@@ -1390,6 +1390,7 @@ End Sub
 Private Sub lstJanela_Click()
    On Error Resume Next
    If Not changeOff Then txtJanela = lstJanela.ItemData(lstJanela.ListIndex)
+   On Error GoTo 0
 End Sub
 
 Private Sub lstTipoLogica_Click()
@@ -1475,10 +1476,8 @@ Private Sub mnuRemover_Click()
    Make_Service "Remoção do Sensor SN= " & txtSerialNumber.Text, strAccess(m_tAccess) & m_sUser
    LoadSensor
    DoEvents
-   DoEvents
    If rsSensor.BOF Or rsSensor.EOF Then
       rsSensor.Requery
-      DoEvents
       DoEvents
    End If
    If rsSensor.BOF Or rsSensor.EOF Then
@@ -1540,6 +1539,11 @@ TreatError:
          reloadForm = True
          Unload Me
          Exit Sub
+      Case invalidSaveReg
+         reloadForm = True
+         Unload Me
+         DoEvents
+         Exit Sub
       Case Else
          MsgBox Err.Description, sxInformation, sxProname
    End Select
@@ -1548,11 +1552,13 @@ End Sub
 Private Sub txtCheck_Change()
    On Error Resume Next
    lstCheck.ListIndex = txtCheck
+   On Error GoTo 0
 End Sub
 
 Private Sub txtInicialZona_Change()
    On Error Resume Next
    lstInicial.ListIndex = txtInicialZona
+   On Error GoTo 0
 End Sub
 
 Private Sub txtJanela_Change()
@@ -1567,6 +1573,7 @@ Private Sub txtJanela_Change()
       Case 80
          lstJanela.ListIndex = 3
    End Select
+   On Error GoTo 0
 End Sub
 
 Private Sub txtNumeroLogica_Change()
@@ -1640,6 +1647,7 @@ End Sub
 Private Sub txtTipoLogica_Change()
    On Error Resume Next
    lstTipoLogica.ListIndex = txtTipoLogica
+   On Error GoTo 0
 End Sub
 
 'Metodo que ajusta a tela de configuração dependendo do dispositivo a ser cadastrado, rede ou sensor
@@ -1798,11 +1806,9 @@ Private Function Update_Register() As Boolean
    End If
    If chkCritico.Value = vbUnchecked Then
       lCritico = False
-      lTelaCheia = False
       lColor = 4 'vbWhite
    Else
       lCritico = True
-      lTelaCheia = (chkTelaCheia.Value = vbChecked)
       If optColor(0) Then
          lColor = 0 'vbRed
       ElseIf optColor(1) Then
@@ -1813,7 +1819,9 @@ Private Function Update_Register() As Boolean
          lColor = 3 'vbGreen
       End If
    End If
-
+   
+    lTelaCheia = (chkTelaCheia.Value = vbChecked)
+    
     If lInsert Then
         txtStr = "INSERT INTO Sensor (fk_Entity, Numero_Sensor, Serial_Number, " & _
                 "Local_Sensor, Local_Logica, Arquivo, UID, PTI, " & _
@@ -2011,6 +2019,7 @@ LoadError:
          txtStr = "UPDATE Sensor SET UID='" & txtUID & "' WHERE (Serial_Number ='" & rsSensor("Serial_Number") & "')"
          oCnn.ExecSp txtStr
          Sync2Sensor
+         On Error GoTo 0
       Case Else
          Err.Raise invalidUpdate
    End Select
@@ -2151,22 +2160,22 @@ Private Function Verify_Consistency() As Boolean
    'Verifica a existência de duplicidade de Dispositivos e Zonas no cadastro.
    
    'Duplicidade de Zona em um mesma entidade
-   If fEditMode = adEditAdd Then
-       'Quando for inserção
-       Set lds = oCnn.ExecSpGetRs("SELECT Numero_Sensor, fk_Entity FROM Sensor WHERE (Numero_Sensor = " & CInt(txtNumeroZona) & _
-                 " AND fk_Entity = " & fEntity.vId & ")")
-   Else
-       'Quando for edição
-       Set lds = oCnn.ExecSpGetRs("SELECT Numero_Sensor, fk_Entity, Serial_Number FROM Sensor WHERE (Numero_Sensor = " & CInt(txtNumeroZona) & _
-                 " AND fk_Entity = " & fEntity.vId & " AND Serial_Number <> '" & rsSensor("Serial_Number") & "')")
-   End If
-   If Not lds.EOF Then
-       MsgBox "Cadastramento duplicado não permitido." & vbCrLf & _
-               "Zona com o mesmo número já existente nesta entidade. ", sxExclamation, sxProname
-       lds.Close
-       Exit Function
-   End If
-   lds.Close
+'   If fEditMode = adEditAdd Then
+'       'Quando for inserção
+'       Set lds = oCnn.ExecSpGetRs("SELECT Numero_Sensor, fk_Entity FROM Sensor WHERE (Numero_Sensor = " & CInt(txtNumeroZona) & _
+'                 " AND fk_Entity = " & fEntity.vId & ")")
+'   Else
+'       'Quando for edição
+'       Set lds = oCnn.ExecSpGetRs("SELECT Numero_Sensor, fk_Entity, Serial_Number FROM Sensor WHERE (Numero_Sensor = " & CInt(txtNumeroZona) & _
+'                 " AND fk_Entity = " & fEntity.vId & " AND Serial_Number <> '" & rsSensor("Serial_Number") & "')")
+'   End If
+'   If Not lds.EOF Then
+'       MsgBox "Cadastramento duplicado não permitido." & vbCrLf & _
+'               "Zona com o mesmo número já existente nesta entidade. ", sxExclamation, sxProname
+'       lds.Close
+'       Exit Function
+'   End If
+'   lds.Close
         
    'Verifica a duplicidade de Dispositivos na rede
    If fEditMode = adEditAdd Then
@@ -2204,9 +2213,12 @@ End Function
 Private Sub LoadSensor()
    On Error Resume Next
    rsSensor.Close
+   On Error GoTo 0
    DoEvents
    rsSensor.Open "SELECT * FROM Sensor WHERE (fk_Entity = " & fEntity.vId & ") ORDER BY Serial_Number ASC", cnDB
-   If rsSensor.EOF Then
+   If rsSensor.EOF And rsSensor.BOF Then
+      rsSensor.Requery
+   ElseIf rsSensor.EOF Then
       DoEvents
       rsSensor.MoveFirst
    End If
@@ -2244,7 +2256,9 @@ Private Sub Sync2Sensor()
    LoadSensor
    DoEvents
    DoEvents
-   If rsSensor.EOF Then
+   If rsSensor.BOF And rsSensor.EOF Then
+      rsSensor.Requery
+   ElseIf rsSensor.EOF Then
       On Error Resume Next
       rsSensor.MoveFirst
    End If

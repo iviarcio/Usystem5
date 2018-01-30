@@ -83,6 +83,10 @@ Private fLoopC As Long
 'Maximum number of tentatives to emit async loop sound
 Private Const maxTentative = 5
 
+Public Function ExtractFileName(FullPath As String) As String
+    ExtractFileName = RTrim(Right(FullPath, Len(FullPath) - InStrRev(FullPath, "\")))
+End Function
+
 Public Sub Sound_Init()
    fSound = 0&
    
@@ -114,14 +118,15 @@ Public Sub Sound_Update(ByVal fmode As SoundMode, ByVal isCritico As Boolean, By
    Dim ltentative As Integer
    Dim lFile As String
    lFile = ""
+   On Error GoTo FileError
    If Not IsMissing(fFile) Then
-      On Error GoTo FileError
       If Left$(fFile, 1) <> " " Then
          If Dir(fFile) <> "" Then
             lFile = fFile
          End If
       End If
    End If
+   On Error Resume Next
 DisplaySound:
    Select Case fmode
       Case sxBgSound:
@@ -288,6 +293,7 @@ DisplaySound:
             End If
          End If
   End Select
+  On Error GoTo 0
   DoEvents
   Exit Sub
 FileError:
@@ -298,19 +304,24 @@ FileError:
 End Sub
 
 Private Sub Show_Display(ByVal fIsCritico As Boolean, ByVal fNoSound As Boolean)
-   On Error Resume Next
-   Dim lDisplay As clsDisplay
-   Set lDisplay = lstDisplay.Item(1)
-   m_UpdateLock = False 'To show the message
-   ForNet.Update_Display lDisplay.dispStr, lDisplay.dispImg, True
-   If lDisplay.dispFile <> "" Then
-      Sound_Update lDisplay.dispMode, fIsCritico, fNoSound, lDisplay.dispFile
-   ElseIf Dir(App.Path & "\Mensagens\" & lDisplay.dispFile) <> "" Then
-      Sound_Update lDisplay.dispMode, fIsCritico, fNoSound, App.Path & "\Mensagens\" & lDisplay.dispFile
-   ElseIf lDisplay.dispMode <> sxNoSound Then
-      Sound_Update lDisplay.dispMode, fIsCritico, fNoSound
-   End If
-   m_UpdateLock = True
+    On Error Resume Next
+    Dim lDisplay As clsDisplay
+    Set lDisplay = lstDisplay.Item(1)
+    m_UpdateLock = False 'To show the message
+    ForNet.Update_Display lDisplay.dispStr, lDisplay.dispImg, True
+    If lDisplay.dispFile = "" Then
+        If lDisplay.dispMode <> sxNoSound Then
+           Sound_Update lDisplay.dispMode, fIsCritico, fNoSound
+        End If
+    ElseIf Dir(lDisplay.dispFile) <> "" Then
+        Sound_Update lDisplay.dispMode, fIsCritico, fNoSound, lDisplay.dispFile
+    Else
+        Dim lFile As String
+        lFile = ExtractFileName(lDisplay.dispFile)
+        Sound_Update lDisplay.dispMode, fIsCritico, fNoSound, App.Path & "\Mensagens\" & lFile
+    End If
+    m_UpdateLock = True
+    On Error GoTo 0
 End Sub
 
 Public Sub Insert_Display(fDisp As clsDisplay, fIsPanico As Boolean, fIsCritico As Boolean, Optional fNoSound As Boolean = False)
@@ -332,17 +343,23 @@ Public Sub Insert_Display(fDisp As clsDisplay, fIsPanico As Boolean, fIsCritico 
       ElseIf Dir(fDisp.dispFile) <> "" Then
          Sound_Update fDisp.dispMode, fIsCritico, fNoSound, fDisp.dispFile
       Else
-         Sound_Update fDisp.dispMode, fIsCritico, fNoSound, App.Path & "\Mensagens\" & fDisp.dispFile
+         Dim lFile As String
+         lFile = ExtractFileName(fDisp.dispFile)
+         Sound_Update fDisp.dispMode, fIsCritico, fNoSound, App.Path & "\Mensagens\" & lFile
       End If
    End If
+   On Error GoTo 0
    Exit Sub
 sndError:
-   Sound_Update fDisp.dispMode, fIsCritico, fNoSound
+    On Error Resume Next
+    Sound_Update fDisp.dispMode, fIsCritico, fNoSound
+    On Error GoTo 0
 End Sub
 
 Public Sub Remove_Display()
    On Error Resume Next
    lstDisplay.Remove 1
+   On Error GoTo 0
    nDisplay = lstDisplay.Count
    If nDisplay > 0 Then
       Show_Display False, False

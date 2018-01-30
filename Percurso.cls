@@ -54,6 +54,7 @@ Public Sub LoadRondas()
          .descrEntity = rsRonda("Descr_Entity")
          .ticketPassagem = False
       End With
+      On Error GoTo 0
       lstRonda.Add Item:=tronda, Key:=CStr(rsRonda("cpRonda"))
       rsRonda.MoveNext
    Wend
@@ -202,6 +203,7 @@ Public Sub Remove_Horarios()
    lcm.CommandText = "DELETE  FROM RdHorario Where (fkPercurso = " & _
                      idPercurso & ")"
    lcm.Execute
+   On Error GoTo 0
 End Sub
 
 Public Sub Load_Horarios()
@@ -222,6 +224,7 @@ Public Sub Load_Horarios()
          .Horario = rsHorario("Horario")
          .ticketHorario = False
       End With
+      On Error GoTo 0
       lstHorario.Add Item:=tHorario, Key:=CStr(tHorario.idHorario)
       rsHorario.MoveNext
       Index = Index + 1
@@ -230,6 +233,7 @@ Public Sub Load_Horarios()
    On Error Resume Next
    Horario = "00:00"
    Horario = lstHorario.Item(1).Horario
+   On Error GoTo 0
 End Sub
 
 Public Sub NextHorario()

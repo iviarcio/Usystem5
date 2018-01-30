@@ -181,6 +181,10 @@ Public Property Get SZona() As typeZona
       SZona = mSZona
 End Property
 
+Public Property Get SRuido() As Boolean
+    SRuido = ruido
+End Property
+
 Public Sub AtualizaPTI(ByVal vNewValue As String)
    mPTI = vNewValue
    Dim lcm As New ADODB.Command
@@ -709,10 +713,10 @@ Private Sub mk_Report(ByVal fEntity As clsEntity, ByVal fNewValue As typeZona)
    End If
 End Sub
 
-Public Function ShowCamera() As Boolean
+Public Function ShowEvent_in_Camera() As Boolean
     If (mTipo = s_Panico) And (ServerAddress <> "") And (Camera <> "") And (Monitor <> "") Then
-       ShowCamera = True
+       ShowEvent_in_Camera = True
     Else
-       ShowCamera = False
+       ShowEvent_in_Camera = False
     End If
 End Function

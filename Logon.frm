@@ -2,7 +2,7 @@ VERSION 5.00
 Begin VB.Form LogOn 
    Appearance      =   0  'Flat
    BorderStyle     =   1  'Fixed Single
-   Caption         =   "Acesso USystemEco"
+   Caption         =   "Acesso USystem5"
    ClientHeight    =   4035
    ClientLeft      =   2400
    ClientTop       =   2805
@@ -448,7 +448,6 @@ Private Sub cmdRegistro_Click()
 End Sub
 
 Private Sub Form_Activate()
-   On Error Resume Next
    txtName.SetFocus
 End Sub
 

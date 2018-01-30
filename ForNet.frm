@@ -537,7 +537,7 @@ Begin VB.MDIForm ForNet
             Style           =   5
             Object.Width           =   1411
             MinWidth        =   1411
-            TextSave        =   "16:16"
+            TextSave        =   "11:03"
          EndProperty
          BeginProperty Panel5 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Bevel           =   0
@@ -941,7 +941,6 @@ Private Sub btnAction_Click(Index As Integer)
          Sound_Update fmode:=sxNoSound, isCritico:=False, fNoSound:=False
          DoEvents
          Remove_Display
-         On Error Resume Next
          Unload frmPanico
          On Error GoTo 0
       Case 11
@@ -949,7 +948,6 @@ Private Sub btnAction_Click(Index As Integer)
       Case 12
          mnuBaseStatus_Click
       Case 13
-         On Error Resume Next
          Load frmComm
          frmComm.Show
          frmComm.ZOrder 0
@@ -1187,7 +1185,6 @@ Public Sub Load_Pisos()
       Load f
       f.curPiso = m_iCurPiso
       f.Caption = tpiso.rCaption
-      On Error Resume Next
       Set f.Picture = LoadPicture(App.Path & "\Pisos\" & rsFloor("Picture_Floor"))
       If firstf Is Nothing Then
          Set firstf = f
@@ -1259,6 +1256,7 @@ Private Sub Comm_Init()
          m_bCommStatus = True
       End If
    Next i
+   On Error GoTo 0
 End Sub
 
 Private Sub MDIForm_Unload(Cancel As Integer)
@@ -1294,7 +1292,8 @@ Private Sub SimulaEventos()
 '   End If
    numEvents = InputBox("Número de Eventos:", "Número de Eventos (default=1)", 1)
    
-   Sensor(0) = "B286A378"
+   Sensor(0) = InputBox("Número do Sensor:", "Alarme", "B2970195")
+'   Sensor(0) = "B286A378"
 '   Sensor(1) = "B28CAF00"
 '   Sensor(2) = "B28C062E"
 '   Sensor(3) = "B28CAEF4"
@@ -1917,7 +1916,6 @@ Private Sub trmInativos_Timer()
    Static flagOpen As Boolean       'Init = false
    Static flagClose As Boolean      'Init = false
    
-   On Error Resume Next
    If Weekday(Date) <> curWeekday Then
       'Clear_Tickets_Percurso
       Clear_Entity_Status fOpen:=True
@@ -2031,7 +2029,7 @@ Private Sub trmRefresh_Timer()
     
     On Error Resume Next
     Me.ActiveForm.Redesenha
-    
+    On Error GoTo 0
     flagToogle = Not flagToogle
     If flagToogle Then
         ' Animation Online button
@@ -2042,7 +2040,6 @@ End Sub
 
 'Timer que chama a verificação da segurança a cada 5 minutos
 Private Sub trmSecurity_Timer()
-   On Error Resume Next
     segCounter = segCounter + 1
     If segCounter = TempoCheckSecurity Then
         Security_Check
@@ -2054,7 +2051,6 @@ End Sub
 'Timer que controla o tempo dos serviços (dupla verificaçao, etc.)
 Private Sub trmService_Timer()
 
-   On Error Resume Next
    If lstService.Count > 0 Then
       Dim IdxService As Integer
       Dim lsrv As clsService

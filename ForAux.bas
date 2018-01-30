@@ -558,6 +558,7 @@ Public Function Device_Name(sPTI As String) As String
     Else
         Device_Name = tPTI.sProduct
     End If
+    On Error GoTo 0
 End Function
 
 'Rotina que controla as diretivas de segurança e as condições das chaves
@@ -744,6 +745,7 @@ Public Sub CompactDB()
     cnDB.ConnectionString = m_sDatabase
     cnDB.ConnectionTimeout = 45
     cnDB.Open
+    On Error GoTo 0
     Exit Sub
    
 CompactError:
@@ -776,12 +778,12 @@ Public Sub ShowCamera(ByVal crModule As clsModule, ByVal fLoja As String)
       End If
    End With
    Set WinHttpReq = New WinHttpRequest
-   WinHttpReq.SetTimeouts "2000", "2000", "2000", "2000"  ' Resolve, Connect, Send and Receive
+   WinHttpReq.SetTimeouts "2000", "5000", "2000", "20000"  ' Resolve, Connect, Send and Receive
    WinHttpReq.Open "POST", strURL, False
    WinHttpReq.SetRequestHeader "ContentType", "text/plain; encoding='utf-8'"
    WinHttpReq.SetRequestHeader "Content-Length", Len(strURL)
    WinHttpReq.Send ""
-   Sleep 2000
+   WinHttpReq.WaitForResponse (60)
    DoEvents
    If WinHttpReq.status <> 200 Then
        ForNet.StatusBar1.Panels.Item(2).Text = "Falha na visualização da Câmera " & crModule.Camera & " para " & fLoja & " (" & crModule.mLocal & ")"
@@ -791,8 +793,8 @@ Public Sub ShowCamera(ByVal crModule As clsModule, ByVal fLoja As String)
    
 camError:
     If Err.Number <> 0 Then
-        ForNet.StatusBar1.Panels.Item(2).Text = "Falha na visualização da Câmera em " & fLoja & ". Erro: " & Err.Description
         Err.Clear
+        ForNet.StatusBar1.Panels.Item(2).Text = "Falha na visualização da Câmera em " & fLoja & ". Erro: " & Err.Description
         Resume Next
     End If
 

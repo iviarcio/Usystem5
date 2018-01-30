@@ -627,6 +627,7 @@ End Sub
 Private Sub Query_Employee()
    On Error Resume Next
    rsEmployee.Close
+   On Error GoTo 0
    rsEmployee.Filter = ""
    rsEmployee.Open "SELECT * FROM Employee ORDER BY Name", cnDB, adOpenStatic, adLockReadOnly
    On Error GoTo 0

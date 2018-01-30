@@ -709,10 +709,10 @@ Private Sub cmdPrint_Click()
    Dim frm As New frmViewReport9
    frm.SetTipo = g_iRptUEventos
    If fEntity Then
-      frm.SetSelection = "{Event.fk_Entity} = " & NEntity & " AND {Event.Date_Event} >= DateTime (" & Year(lastDate) & _
+      frm.SetSelection = "{fk_Entity} = " & NEntity & " AND {Date_Event} >= DateTime (" & Year(lastDate) & _
                               ", " & Month(lastDate) & ", " & Day(lastDate) & ")"
    Else
-      frm.SetSelection = "{Event.Date_Event} >= DateTime (" & Year(lastDate) & _
+      frm.SetSelection = "{Date_Event} >= DateTime (" & Year(lastDate) & _
                               ", " & Month(lastDate) & ", " & Day(lastDate) & ")"
    End If
    frm.WindowState = vbMaximized
@@ -760,6 +760,7 @@ Private Sub Form_Activate()
             mList(mRow, 4) = Format(.evDate, "dd/mm")
             mList(mRow, 5) = Format(.evDate, "hh:mm:ss")
             mList(mRow, 6) = .evStr
+            On Error GoTo 0
          End With
          mRow = mRow + 1
       Next

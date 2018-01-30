@@ -924,4 +924,5 @@ Private Sub Grid_Load()
    End If
    tdbg1.Array = mList
    tdbg1.ReBind
+   On Error GoTo 0
 End Sub

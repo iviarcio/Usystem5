@@ -449,7 +449,7 @@ Private Sub cmdPrint_Click()
    Else
       'Não executados ou fora do intervalo
       frm.SetTipo = g_iRptExRonda
-      frm.SetSelection = "({EvtRonda.kind_Ronda}=1 or {EvtRonda.kind_Ronda}=2)"
+      frm.SetSelection = "({kind_Ronda}=1 or {kind_Ronda}=2)"
    End If
       
    SetHourGlass Me

@@ -332,6 +332,7 @@ Private Sub tdbg1_SelChange(Cancel As Integer)
    Dim tEntity As clsEntity
    On Error Resume Next
    Set tEntity = lstEntity.Item(tdbg1.Columns(0))
+   On error goto 0
    If Not (tEntity Is Nothing) Then
       Load frmEntity
       With frmEntity

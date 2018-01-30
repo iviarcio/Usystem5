@@ -67,16 +67,16 @@ Begin VB.Form frmProgR
       TabCaption(1)   =   "  Sábado   "
       TabPicture(1)   =   "ProgReport.frx":045E
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Frame4"
+      Tab(1).Control(0)=   "Frame9"
       Tab(1).Control(1)=   "Frame5"
-      Tab(1).Control(2)=   "Frame9"
+      Tab(1).Control(2)=   "Frame4"
       Tab(1).ControlCount=   3
       TabCaption(2)   =   "  Domingo  "
       TabPicture(2)   =   "ProgReport.frx":047A
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "Frame6"
+      Tab(2).Control(0)=   "Frame10"
       Tab(2).Control(1)=   "Frame7"
-      Tab(2).Control(2)=   "Frame10"
+      Tab(2).Control(2)=   "Frame6"
       Tab(2).ControlCount=   3
       Begin VB.Frame Frame10 
          Caption         =   "Limites de Abertura e Fechamento"
@@ -822,6 +822,7 @@ Private Sub Form_Activate()
    End If
    lrs.Close
    f_bChange = False
+   On Error GoTo 0
 End Sub
 
 Private Sub Form_Load()
