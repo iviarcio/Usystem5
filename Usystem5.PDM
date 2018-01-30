@@ -1,0 +1,287 @@
+[Root]
+Most Recent Package=USystemEco Setup Package
+
+
+[Package|USystemEco Setup Package|Root]
+SubWizProgID=PDWizard.SetupPkgSubWiz
+BuildFolder=C:\Documents and Settings\Marcio\My Documents\USystemEco\Package
+
+[Package|USystemEco Setup Package|Configure DAO ISAMs]
+Applicable=Yes
+Jet 2.x=No
+
+[Package|USystemEco Setup Package|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|USystemEco Setup Package|Files Found]
+
+[Package|USystemEco Setup Package|Files Released]
+u2dapp.dll=
+u2dpost.dll=
+u2fxml.dll=
+u2fsepv.dll=
+u2fcr.dll=
+Unicows.dll=
+C50032.DLL=
+
+[Package|USystemEco Setup Package|Missing Dependency Information]
+C:\WINDOWS\system32\crystl32.ocx=
+C:\Program Files\Common Files\System\ado\msjro.dll=
+C:\Program Files\Common Files\Crystal Decisions\2.0\bin\craxdrt9.dll=
+C:\Program Files\Common Files\Crystal Decisions\2.0\bin\crviewer9.dll=
+C:\WINDOWS\system32\msjro.dll=
+
+[Package|USystemEco Setup Package|Out-of-Date Dependency Information]
+C:\WINDOWS\system32\tdbgpp.dll=
+C:\WINDOWS\system32\todgub6.dll=
+C:\WINDOWS\system32\todg6.ocx=
+C:\WINDOWS\system32\xarraydb.ocx=
+
+[Package|USystemEco Setup Package|Files Added]
+c:\documents and settings\marcio\my documents\usystemeco\fontes\database\usystemev01.mdb=
+c:\documents and settings\marcio\my documents\usystemeco\fontes\database\usystemcd01.mdb=
+c:\documents and settings\marcio\my documents\usystemeco\fontes\mensagens\spkgliss.wav=
+c:\documents and settings\marcio\my documents\usystemeco\fontes\mensagens\alert.wav=
+c:\documents and settings\marcio\my documents\usystemeco\fontes\mensagens\melorise.wav=
+c:\documents and settings\marcio\my documents\usystemeco\fontes\mensagens\phnbusy.wav=
+c:\documents and settings\marcio\my documents\usystemeco\fontes\mensagens\siren1.wav=
+c:\documents and settings\marcio\my documents\usystemeco\fontes\pisos\terreo.jpg=
+c:\documents and settings\marcio\my documents\usystemeco\fontes\pisos\piso3.jpg=
+c:\documents and settings\marcio\my documents\usystemeco\fontes\pisos\subsolo.bmp=
+
+[Package|USystemEco Setup Package|Files Removed]
+
+[Package|USystemEco Setup Package|Files In Project]
+C:\WINDOWS\system32\msvbvm60.dll=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\WINDOWS\system32\xarraydb.ocx=Yes
+C:\WINDOWS\system32\MSBIND.DLL=Yes
+C:\WINDOWS\system32\MSSTDFMT.DLL=Yes
+C:\Program Files\Common Files\Microsoft Shared\DAO\DAO350.DLL=Yes
+C:\WINDOWS\system32\msjet35.dll=Yes
+C:\WINDOWS\system32\MSJTER35.DLL=Yes
+C:\WINDOWS\system32\MSJINT35.DLL=Yes
+C:\WINDOWS\system32\vbajet32.dll=Yes
+C:\WINDOWS\system32\expsrv.dll=Yes
+C:\WINDOWS\system32\MSRD2X35.DLL=Yes
+C:\WINDOWS\system32\msrepl35.dll=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT40.DLL=Yes
+C:\WINDOWS\system32\VB5DB.DLL=Yes
+C:\WINDOWS\system32\MSDBRPTR.DLL=Yes
+C:\Program Files\Common Files\Crystal Decisions\2.0\bin\craxddrt9.dll=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT.DLL=Yes
+\Program Files\Common Files\Crystal Decisions\2.0\bin\crtowords_en.dll=Yes
+\Program Files\Common Files\Crystal Decisions\2.0\bin\ufmanager.dll=Yes
+\Program Files\Common Files\Crystal Decisions\2.0\bin\u2l2000.dll=Yes
+\Program Files\Common Files\Crystal Decisions\2.0\bin\u2lcom.dll=Yes
+\Program Files\Common Files\Crystal Decisions\2.0\bin\u2ldts.dll=Yes
+\Program Files\Common Files\Crystal Decisions\2.0\bin\u2lexch.dll=Yes
+\Program Files\Common Files\Crystal Decisions\2.0\bin\u2lfinra.dll=Yes
+\Program Files\Common Files\Crystal Decisions\2.0\bin\u252000.dll=Yes
+\Program Files\Common Files\Crystal Decisions\2.0\bin\u25dts.dll=Yes
+\Program Files\Common Files\Crystal Decisions\2.0\bin\u25samp1.dll=Yes
+\Program Files\Common Files\Crystal Decisions\2.0\bin\Implode.dll=Yes
+\Program Files\Common Files\Crystal Decisions\2.0\bin\crqe.dll=Yes
+\Program files\common files\Crystal Decisions\2.0\bin\crdb_ado.dll=Yes
+\Program files\common files\Crystal Decisions\2.0\bin\crdb_dao.dll=Yes
+\Program files\common files\Crystal Decisions\2.0\bin\crdb_odbc.dll=Yes
+\Program files\common files\Crystal Decisions\2.0\bin\querybuilder.dll=Yes
+\Program files\common files\Crystal Decisions\2.0\bin\exlate32.dll=Yes
+\Program Files\Common Files\Crystal Decisions\2.0\bin\sscsdk80.dll=Yes
+C:\Program Files\Common Files\Crystal Decisions\2.0\bin\sscrc.dll=Yes
+C:\Program Files\Common Files\Crystal Decisions\2.0\bin\sscdlg.dll=Yes
+C:\Program Files\Common Files\Crystal Decisions\2.0\bin\CRAnalyzer.dll=Yes
+C:\Program Files\Common Files\Crystal Decisions\2.0\bin\p2ixbse.dll=Yes
+C:\Program Files\Common Files\Crystal Decisions\2.0\bin\crdb_dictionary.dll=Yes
+C:\Program Files\Common Files\Crystal Decisions\2.0\bin\filedialog.dll=Yes
+C:\Program Files\Common Files\Crystal Decisions\2.0\bin\sacommoncontrols.dll=Yes
+\Program files\common files\Crystal Decisions\2.0\bin\crxf_pdf.dll=Yes
+\Program Files\Common Files\Crystal Decisions\2.0\bin\ExportModeller.dll=Yes
+\Program Files\Common Files\Crystal Decisions\2.0\bin\crtslv.dll=Yes
+\Program files\common files\Crystal Decisions\2.0\bin\crxf_rtf.dll=Yes
+\Program files\common files\Crystal Decisions\2.0\bin\crxf_wordw.dll=Yes
+\Program files\common files\Crystal Decisions\2.0\bin\crxf_xls.dll=Yes
+\Program files\common files\Crystal Decisions\2.0\bin\u2ftext.dll=Yes
+\Program files\common files\Crystal Decisions\2.0\bin\u2ddisk.dll=Yes
+\Program files\common files\Crystal Decisions\2.0\bin\keycode.dll=Yes
+\Program files\common files\Crystal Decisions\2.0\bin\CR9DEPLOY.REG=Yes
+C:\WINDOWS\system32\COMDLG32.OCX=Yes
+C:\WINDOWS\system32\MSCOMCTL.OCX=Yes
+C:\WINDOWS\system32\MSCOMM32.OCX=Yes
+C:\WINDOWS\system32\THREED32.OCX=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MFC40.DLL=Yes
+C:\WINDOWS\system32\todg6.ocx=Yes
+C:\WINDOWS\system32\todgub6.dll=Yes
+C:\WINDOWS\system32\tdbgpp.dll=Yes
+C:\WINDOWS\system32\MSADODC.OCX=Yes
+C:\WINDOWS\system32\MSDATLST.OCX=Yes
+C:\WINDOWS\system32\MSMASK32.OCX=Yes
+C:\WINDOWS\system32\TABCTL32.OCX=Yes
+C:\WINDOWS\system32\crystl32.ocx=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
+C:\WINDOWS\system32\VB6STKIT.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Database\USystemEv01.mdb=Yes
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Database\USystemCd01.mdb=Yes
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Mensagens\SPKGLISS.WAV=Yes
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Mensagens\alert.wav=Yes
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Mensagens\MELORISE.WAV=Yes
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Mensagens\PHNBUSY.WAV=Yes
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Mensagens\SIREN1.WAV=Yes
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Pisos\Terreo.JPG=Yes
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Pisos\Piso3.JPG=Yes
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Pisos\Subsolo.bmp=Yes
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\USystemEco.exe=Yes
+C:\WINDOWS\system32\msjro.dll=Yes
+C:\Program Files\Common Files\Crystal Decisions\2.0\bin\crviewer9.dll=Yes
+C:\Program Files\Common Files\Crystal Decisions\2.0\bin\craxdrt9.dll=Yes
+
+[Package|USystemEco Setup Package|Configure Registry Files]
+Applicable=Yes
+\Program files\common files\Crystal Decisions\2.0\bin\CR9DEPLOY.REG=Register
+
+[Package|USystemEco Setup Package|Configure Remote Servers]
+Applicable=No
+
+[Package|USystemEco Setup Package|Install Locations]
+\\VBOXSVR\WinXP\USystemEco\Fontes\USystemEco.exe=$(AppPath)
+C:\WINDOWS\system32\msvbvm60.dll=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\WINDOWS\system32\xarraydb.ocx=$(WinSysPath)
+C:\WINDOWS\system32\MSBIND.DLL=$(WinSysPath)
+C:\WINDOWS\system32\MSSTDFMT.DLL=$(WinSysPath)
+C:\Program Files\Common Files\Microsoft Shared\DAO\DAO350.DLL=$(MSDAOPath)
+C:\WINDOWS\system32\msjet35.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\MSJTER35.DLL=$(WinSysPathSysFile)
+C:\WINDOWS\system32\MSJINT35.DLL=$(WinSysPathSysFile)
+C:\WINDOWS\system32\vbajet32.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\expsrv.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\MSRD2X35.DLL=$(WinSysPathSysFile)
+C:\WINDOWS\system32\msrepl35.dll=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT40.DLL=$(WinSysPathSysFile)
+C:\WINDOWS\system32\VB5DB.DLL=$(WinSysPath)
+C:\Program Files\Common Files\System\ado\msjro.dll=$(WinSysPath)
+C:\WINDOWS\system32\MSDBRPTR.DLL=$(WinSysPath)
+C:\Program Files\Common Files\Crystal Decisions\2.0\crystalreportviewers\ActiveXViewer\crviewer9.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files\Crystal Decisions\Report Designer Component\craxdrt9.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files\Common Files\Crystal Decisions\2.0\bin\craxddrt9.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT.DLL=$(WinSysPath)
+\Program Files\Common Files\Crystal Decisions\2.0\bin\crtowords_en.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program Files\Common Files\Crystal Decisions\2.0\bin\ufmanager.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program Files\Common Files\Crystal Decisions\2.0\bin\u2l2000.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program Files\Common Files\Crystal Decisions\2.0\bin\u2lcom.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program Files\Common Files\Crystal Decisions\2.0\bin\u2ldts.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program Files\Common Files\Crystal Decisions\2.0\bin\u2lexch.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program Files\Common Files\Crystal Decisions\2.0\bin\u2lfinra.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program Files\Common Files\Crystal Decisions\2.0\bin\u252000.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program Files\Common Files\Crystal Decisions\2.0\bin\u25dts.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program Files\Common Files\Crystal Decisions\2.0\bin\u25samp1.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program Files\Common Files\Crystal Decisions\2.0\bin\Implode.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program Files\Common Files\Crystal Decisions\2.0\bin\crqe.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program files\common files\Crystal Decisions\2.0\bin\crdb_ado.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program files\common files\Crystal Decisions\2.0\bin\crdb_dao.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program files\common files\Crystal Decisions\2.0\bin\crdb_odbc.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program files\common files\Crystal Decisions\2.0\bin\querybuilder.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program files\common files\Crystal Decisions\2.0\bin\exlate32.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program Files\Common Files\Crystal Decisions\2.0\bin\sscsdk80.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files\Common Files\Crystal Decisions\2.0\bin\sscrc.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files\Common Files\Crystal Decisions\2.0\bin\sscdlg.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files\Common Files\Crystal Decisions\2.0\bin\CRAnalyzer.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files\Common Files\Crystal Decisions\2.0\bin\p2ixbse.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files\Common Files\Crystal Decisions\2.0\bin\crdb_dictionary.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files\Common Files\Crystal Decisions\2.0\bin\filedialog.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files\Common Files\Crystal Decisions\2.0\bin\sacommoncontrols.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program files\common files\Crystal Decisions\2.0\bin\crxf_pdf.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program Files\Common Files\Crystal Decisions\2.0\bin\ExportModeller.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program Files\Common Files\Crystal Decisions\2.0\bin\crtslv.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program files\common files\Crystal Decisions\2.0\bin\crxf_rtf.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program files\common files\Crystal Decisions\2.0\bin\crxf_wordw.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program files\common files\Crystal Decisions\2.0\bin\crxf_xls.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program files\common files\Crystal Decisions\2.0\bin\u2ftext.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program files\common files\Crystal Decisions\2.0\bin\u2ddisk.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+\Program files\common files\Crystal Decisions\2.0\bin\keycode.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\WINDOWS\system32\COMDLG32.OCX=$(WinSysPath)
+C:\WINDOWS\system32\MSCOMCTL.OCX=$(WinSysPath)
+C:\WINDOWS\system32\MSCOMM32.OCX=$(WinSysPath)
+C:\WINDOWS\system32\THREED32.OCX=$(WinSysPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MFC40.DLL=$(WinSysPathSysFile)
+C:\WINDOWS\system32\todg6.ocx=$(WinSysPath)
+C:\WINDOWS\system32\todgub6.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\tdbgpp.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\MSADODC.OCX=$(WinSysPath)
+C:\WINDOWS\system32\MSDATLST.OCX=$(WinSysPath)
+C:\WINDOWS\system32\MSMASK32.OCX=$(WinSysPath)
+C:\WINDOWS\system32\TABCTL32.OCX=$(WinSysPath)
+C:\WINDOWS\system32\crystl32.ocx=$(WinSysPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=$(AppPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\WINDOWS\system32\VB6STKIT.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Database\USystemEv01.mdb=$(AppPath)\Database
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Database\USystemCd01.mdb=$(AppPath)\Database
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Mensagens\SPKGLISS.WAV=$(AppPath)\Mensagens
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Mensagens\alert.wav=$(AppPath)\Mensagens
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Mensagens\MELORISE.WAV=$(AppPath)\Mensagens
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Mensagens\PHNBUSY.WAV=$(AppPath)\Mensagens
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Mensagens\SIREN1.WAV=$(AppPath)\Mensagens
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Pisos\Terreo.JPG=$(AppPath)\Pisos
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Pisos\Piso3.JPG=$(AppPath)\Pisos
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Pisos\Subsolo.bmp=$(AppPath)\Pisos
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\USystemEco.exe=$(AppPath)
+C:\WINDOWS\system32\msjro.dll=$(WinSysPath)
+C:\Program Files\Common Files\Crystal Decisions\2.0\bin\crviewer9.dll=$(WinSysPath)
+C:\Program Files\Common Files\Crystal Decisions\2.0\bin\craxdrt9.dll=$(WinSysPath)
+
+[Package|USystemEco Setup Package|Configure Shared Files]
+Applicable=Yes
+\\VBOXSVR\WinXP\USystemEco\Fontes\USystemEco.exe=No
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=Yes
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Database\USystemEv01.mdb=No
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Database\USystemCd01.mdb=No
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Mensagens\SPKGLISS.WAV=No
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Mensagens\alert.wav=No
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Mensagens\MELORISE.WAV=No
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Mensagens\PHNBUSY.WAV=No
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Mensagens\SIREN1.WAV=No
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Pisos\Terreo.JPG=No
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Pisos\Piso3.JPG=No
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\Pisos\Subsolo.bmp=No
+C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes\USystemEco.exe=No
+
+[Package|USystemEco Setup Package|Distribution]
+Type=single
+Size=
+Title=USystemEco
+
+[Package|USystemEco Setup Package|Package]
+PackageFolder=C:\Documents and Settings\Marcio\My Documents\USystemEco\Package
+ProjectFolder=C:\Documents and Settings\Marcio\My Documents\USystemEco\Fontes
+ServerSideCab=
+File1=C:\Documents and Settings\Marcio\My Documents\USystemEco\Package\setup.exe
+File2=C:\Documents and Settings\Marcio\My Documents\USystemEco\Package\Setup.Lst
+File3=C:\Documents and Settings\Marcio\My Documents\USystemEco\Package\USystemEco.CAB
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz
+
+[Package|USystemEco Setup Package|IconGroups]
+Group0=USystemEco
+PrivateGroup0=-1
+Parent0=$(Programs)
+
+[Package|USystemEco Setup Package|USystemEco]
+Icon1=USystemEco.exe
+Title1=USystemEco
+StartIn1=$(AppPath)
+Key1=Icon1
