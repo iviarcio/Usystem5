@@ -77,6 +77,7 @@ Public telaCheia As Boolean      'Indicativo de visualização em tela cheia
 Public user As String            'Usuário de acesso ao servidor CFTV
 Public senha As String           'Senha de acesso ao Servidor CFTV
 Public popup As Boolean          'Sinaliza se mostra a camera ou não no Monitor selecionado
+Public grupo As Integer          'Sinaliza o grupo que o sensor pertence (0:Geral, não especificado)
 
 Private Sub Class_Initialize()
    mTipo = s_Incendio
@@ -99,6 +100,7 @@ Private Sub Class_Initialize()
    user = "admin"
    senha = ""
    popup = False
+   grupo = 0
 End Sub
 
 Public Property Let NivelSinal(fNewValue As String)

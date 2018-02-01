@@ -460,9 +460,9 @@ Private Sub cmdPrint_Click()
 End Sub
    
 Private Sub Form_Activate()
-   cmdCleanUp.Visible = (m_tAccess = sxSystem)
-   imgCleanUp.Visible = (m_tAccess = sxSystem)
-   lblCleanUp.Visible = (m_tAccess = sxSystem)
+   cmdCleanUp.Visible = (m_tAccess = sxAdministrador)
+   imgCleanUp.Visible = (m_tAccess = sxAdministrador)
+   lblCleanUp.Visible = (m_tAccess = sxAdministrador)
    cmdCleanUp.Enabled = True
    cblPercurso.Visible = False
    cblPercurso.Clear

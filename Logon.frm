@@ -324,7 +324,7 @@ Private Sub Try_Login()
       strPassword = Format(Day(Date), "00") & "f" & Format(Month(Date), "00") & "o" & Format(Right(Year(Date), 2), "00") & "r"
       If txtPassword = strPassword Then
             m_sUser = txtName
-            m_tAccess = sxSystem
+            m_tAccess = sxAdministrador
             m_bPermition = True
             m_Debug = True
             Unload Me

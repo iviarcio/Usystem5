@@ -537,7 +537,7 @@ Begin VB.MDIForm ForNet
             Style           =   5
             Object.Width           =   1411
             MinWidth        =   1411
-            TextSave        =   "11:03"
+            TextSave        =   "12:18"
          EndProperty
          BeginProperty Panel5 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Bevel           =   0
@@ -2074,15 +2074,15 @@ End Sub
 
 Private Sub SetStatus(ByVal fAccess As typeAccess)
 
-   SetAppearence btnAction(12), (m_tAccess = sxSystem) Or (m_tAccess = sxAdministrator)
-   SetAppearence btnAction(13), (m_tAccess = sxSystem)
-   SetAppearence btnAction(14), (m_tAccess = sxSystem)
+   SetAppearence btnAction(12), (m_tAccess = sxAdministrador) Or (m_tAccess = sxSupervisor)
+   SetAppearence btnAction(13), (m_tAccess = sxAdministrador)
+   SetAppearence btnAction(14), (m_tAccess = sxAdministrador)
    SetAppearence btnAction(11), (fAccess <> sxOperator)
    SetAppearence btnAction(15), (fAccess <> sxOperator)
    
    mnuExit.Enabled = fAccess <> sxOperator
-   mnuConfig.Enabled = fAccess = sxSystem
-   mnuModeDesign.Enabled = fAccess = sxSystem
+   mnuConfig.Enabled = fAccess = sxAdministrador
+   mnuModeDesign.Enabled = fAccess = sxAdministrador
    mnuPisos.Enabled = fAccess <> sxOperator
    mnuBackup.Enabled = fAccess <> sxOperator
    mnuBaseStatus.Enabled = fAccess <> sxOperator

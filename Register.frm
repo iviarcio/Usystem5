@@ -3,16 +3,25 @@ Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Object = "{A4749554-0441-4E64-8A03-3323601631C7}#1.0#0"; "LaVolpeAlphaImg2.ocx"
 Begin VB.Form frmRegister 
    Caption         =   "Configuração de Zona"
-   ClientHeight    =   8160
+   ClientHeight    =   8115
    ClientLeft      =   165
    ClientTop       =   810
    ClientWidth     =   10065
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   8160
+   ScaleHeight     =   8115
    ScaleWidth      =   10065
    StartUpPosition =   3  'Windows Default
+   Begin VB.TextBox txtGrupo 
+      Height          =   300
+      Left            =   1080
+      MaxLength       =   3
+      TabIndex        =   67
+      TabStop         =   0   'False
+      Top             =   9600
+      Width           =   1065
+   End
    Begin VB.TextBox txtColor 
       Height          =   300
       Left            =   7200
@@ -135,6 +144,26 @@ Begin VB.Form frmRegister
       TabIndex        =   0
       Top             =   840
       Width           =   9855
+      Begin VB.ComboBox lstTipoGrupo 
+         BackColor       =   &H0080FFFF&
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   315
+         ItemData        =   "Register.frx":0000
+         Left            =   3120
+         List            =   "Register.frx":0002
+         Style           =   2  'Dropdown List
+         TabIndex        =   66
+         Top             =   960
+         Width           =   1935
+      End
       Begin VB.TextBox txtNumeroZona 
          Alignment       =   2  'Center
          BackColor       =   &H0080FFFF&
@@ -148,7 +177,7 @@ Begin VB.Form frmRegister
             Strikethrough   =   0   'False
          EndProperty
          Height          =   315
-         Left            =   8400
+         Left            =   8500
          MaxLength       =   15
          TabIndex        =   64
          Text            =   "No. Zona"
@@ -447,7 +476,7 @@ Begin VB.Form frmRegister
          Begin VB.Image imgTratamento 
             Height          =   480
             Left            =   4080
-            Picture         =   "Register.frx":0000
+            Picture         =   "Register.frx":0004
             Top             =   280
             Width           =   480
          End
@@ -518,12 +547,12 @@ Begin VB.Form frmRegister
             Strikethrough   =   0   'False
          EndProperty
          Height          =   315
-         ItemData        =   "Register.frx":0442
+         ItemData        =   "Register.frx":0446
          Left            =   1080
-         List            =   "Register.frx":0461
+         List            =   "Register.frx":0465
          Style           =   2  'Dropdown List
          TabIndex        =   2
-         Top             =   930
+         Top             =   960
          Width           =   1335
       End
       Begin VB.TextBox txtSerialNumber 
@@ -539,7 +568,7 @@ Begin VB.Form frmRegister
             Strikethrough   =   0   'False
          EndProperty
          Height          =   315
-         Left            =   3480
+         Left            =   5520
          MaxLength       =   8
          TabIndex        =   3
          Text            =   "00000000"
@@ -559,7 +588,7 @@ Begin VB.Form frmRegister
             Strikethrough   =   0   'False
          EndProperty
          Height          =   315
-         Left            =   8400
+         Left            =   8500
          Locked          =   -1  'True
          MaxLength       =   15
          TabIndex        =   5
@@ -605,9 +634,9 @@ Begin VB.Form frmRegister
       End
       Begin VB.ComboBox lstDescrZona 
          Height          =   315
-         ItemData        =   "Register.frx":04BD
+         ItemData        =   "Register.frx":04C1
          Left            =   1080
-         List            =   "Register.frx":04BF
+         List            =   "Register.frx":04C3
          Style           =   2  'Dropdown List
          TabIndex        =   36
          Top             =   360
@@ -647,7 +676,7 @@ Begin VB.Form frmRegister
             Strikethrough   =   0   'False
          EndProperty
          Height          =   315
-         Left            =   6240
+         Left            =   7080
          Locked          =   -1  'True
          MaxLength       =   8
          TabIndex        =   4
@@ -795,9 +824,9 @@ Begin VB.Form frmRegister
                Strikethrough   =   0   'False
             EndProperty
             Height          =   315
-            ItemData        =   "Register.frx":04C1
+            ItemData        =   "Register.frx":04C5
             Left            =   360
-            List            =   "Register.frx":04CB
+            List            =   "Register.frx":04CF
             Style           =   2  'Dropdown List
             TabIndex        =   9
             Top             =   360
@@ -854,9 +883,9 @@ Begin VB.Form frmRegister
             Strikethrough   =   0   'False
          EndProperty
          Height          =   315
-         ItemData        =   "Register.frx":04DD
+         ItemData        =   "Register.frx":04E1
          Left            =   8400
-         List            =   "Register.frx":04F1
+         List            =   "Register.frx":04F5
          Style           =   2  'Dropdown List
          TabIndex        =   8
          Top             =   1680
@@ -874,9 +903,9 @@ Begin VB.Form frmRegister
             Strikethrough   =   0   'False
          EndProperty
          Height          =   315
-         ItemData        =   "Register.frx":0515
+         ItemData        =   "Register.frx":0519
          Left            =   5040
-         List            =   "Register.frx":051F
+         List            =   "Register.frx":0523
          Style           =   2  'Dropdown List
          TabIndex        =   7
          Top             =   1680
@@ -894,13 +923,32 @@ Begin VB.Form frmRegister
             Strikethrough   =   0   'False
          EndProperty
          Height          =   315
-         ItemData        =   "Register.frx":0533
+         ItemData        =   "Register.frx":0537
          Left            =   1320
-         List            =   "Register.frx":0543
+         List            =   "Register.frx":0547
          Style           =   2  'Dropdown List
          TabIndex        =   6
          Top             =   1680
          Width           =   1335
+      End
+      Begin VB.Label Label3 
+         Alignment       =   1  'Right Justify
+         Caption         =   "Grupo: "
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00800000&
+         Height          =   255
+         Left            =   2520
+         TabIndex        =   65
+         Top             =   1000
+         Width           =   495
       End
       Begin VB.Label lblZona 
          Alignment       =   1  'Right Justify
@@ -916,7 +964,7 @@ Begin VB.Form frmRegister
          EndProperty
          ForeColor       =   &H00800000&
          Height          =   255
-         Left            =   7680
+         Left            =   7840
          TabIndex        =   63
          Top             =   405
          Width           =   615
@@ -930,8 +978,8 @@ Begin VB.Form frmRegister
          Width           =   720
          _ExtentX        =   1270
          _ExtentY        =   1270
-         Image           =   "Register.frx":0576
-         Effects         =   "Register.frx":1735
+         Image           =   "Register.frx":057A
+         Effects         =   "Register.frx":1739
       End
       Begin VB.Label lblReceptor 
          Alignment       =   1  'Right Justify
@@ -994,7 +1042,7 @@ Begin VB.Form frmRegister
          Height          =   255
          Left            =   120
          TabIndex        =   39
-         Top             =   960
+         Top             =   1000
          Width           =   855
       End
       Begin VB.Label Label5 
@@ -1011,9 +1059,9 @@ Begin VB.Form frmRegister
          EndProperty
          ForeColor       =   &H00800000&
          Height          =   255
-         Left            =   2880
+         Left            =   5000
          TabIndex        =   38
-         Top             =   990
+         Top             =   1000
          Width           =   495
       End
       Begin VB.Label Label21 
@@ -1049,7 +1097,7 @@ Begin VB.Form frmRegister
          EndProperty
          ForeColor       =   &H00800000&
          Height          =   255
-         Left            =   7920
+         Left            =   8100
          TabIndex        =   15
          Top             =   990
          Width           =   375
@@ -1068,9 +1116,9 @@ Begin VB.Form frmRegister
          EndProperty
          ForeColor       =   &H00800000&
          Height          =   255
-         Left            =   5760
+         Left            =   6680
          TabIndex        =   17
-         Top             =   990
+         Top             =   1005
          Width           =   375
       End
       Begin VB.Label lblJanela 
@@ -1140,8 +1188,8 @@ Begin VB.Form frmRegister
       Width           =   720
       _ExtentX        =   1270
       _ExtentY        =   1270
-      Image           =   "Register.frx":174D
-      Effects         =   "Register.frx":2342
+      Image           =   "Register.frx":1751
+      Effects         =   "Register.frx":2346
    End
    Begin LaVolpeAlphaImg.AlphaImgCtl btnReg 
       Height          =   720
@@ -1152,8 +1200,8 @@ Begin VB.Form frmRegister
       Width           =   720
       _ExtentX        =   1270
       _ExtentY        =   1270
-      Image           =   "Register.frx":235A
-      Effects         =   "Register.frx":3170
+      Image           =   "Register.frx":235E
+      Effects         =   "Register.frx":3174
    End
    Begin LaVolpeAlphaImg.AlphaImgCtl btnReg 
       Height          =   720
@@ -1164,8 +1212,8 @@ Begin VB.Form frmRegister
       Width           =   720
       _ExtentX        =   1270
       _ExtentY        =   1270
-      Image           =   "Register.frx":3188
-      Effects         =   "Register.frx":3E8D
+      Image           =   "Register.frx":318C
+      Effects         =   "Register.frx":3E91
    End
    Begin LaVolpeAlphaImg.AlphaImgCtl btnReg 
       Height          =   720
@@ -1176,8 +1224,8 @@ Begin VB.Form frmRegister
       Width           =   720
       _ExtentX        =   1270
       _ExtentY        =   1270
-      Image           =   "Register.frx":3EA5
-      Effects         =   "Register.frx":4C65
+      Image           =   "Register.frx":3EA9
+      Effects         =   "Register.frx":4C69
    End
    Begin LaVolpeAlphaImg.AlphaImgCtl btnReg 
       Height          =   720
@@ -1188,8 +1236,8 @@ Begin VB.Form frmRegister
       Width           =   720
       _ExtentX        =   1270
       _ExtentY        =   1270
-      Image           =   "Register.frx":4C7D
-      Effects         =   "Register.frx":5ADB
+      Image           =   "Register.frx":4C81
+      Effects         =   "Register.frx":5ADF
    End
    Begin LaVolpeAlphaImg.AlphaImgCtl btnReg 
       Height          =   720
@@ -1200,8 +1248,8 @@ Begin VB.Form frmRegister
       Width           =   720
       _ExtentX        =   1270
       _ExtentY        =   1270
-      Image           =   "Register.frx":5AF3
-      Effects         =   "Register.frx":69A5
+      Image           =   "Register.frx":5AF7
+      Effects         =   "Register.frx":69A9
    End
    Begin VB.Menu mnuConfig 
       Caption         =   "Configuração"
@@ -1350,6 +1398,7 @@ findHandler:
 End Sub
 
 Private Sub Form_Activate()
+   LoadGrupo
    LoadSensor
    UpdateForm fRefill:=True
 End Sub
@@ -1381,6 +1430,10 @@ Private Sub lstDescrZona_Click()
       End If
    Wend
    Load_Register
+End Sub
+
+Private Sub lstTipoGrupo_Click()
+    If Not changeOff Then txtGrupo = lstTipoGrupo.ListIndex
 End Sub
 
 Private Sub lstInicial_Click()
@@ -1553,6 +1606,11 @@ Private Sub txtCheck_Change()
    On Error Resume Next
    lstCheck.ListIndex = txtCheck
    On Error GoTo 0
+End Sub
+
+Private Sub txtGrupo_Change()
+   If IsNumeric(txtGrupo) Then
+        lstTipoGrupo.ListIndex = txtGrupo
 End Sub
 
 Private Sub txtInicialZona_Change()
@@ -1736,6 +1794,12 @@ Private Function Update_Register() As Boolean
     Else
         lTipoDevice = 0
     End If
+    Dim lGrupo As Integer
+    If IsNumeric(txtGrupo) Then
+        lGrupo = txtGrupo
+    Else
+        lGrupo = 0
+    End If
     Dim lUID As String
     Dim lPTI As String
     If lTipoDevice = 8 Then
@@ -1825,12 +1889,12 @@ Private Function Update_Register() As Boolean
     If lInsert Then
         txtStr = "INSERT INTO Sensor (fk_Entity, Numero_Sensor, Serial_Number, " & _
                 "Local_Sensor, Local_Logica, Arquivo, UID, PTI, " & _
-                "Receptor, Tipo_Sensor, Inicial_Sensor, Check_Sensor, " & _
+                "Receptor, Tipo_Sensor, fk_grupo, Inicial_Sensor, Check_Sensor, " & _
                 "Janela_Sensor, Tipo_Logica, Numero_Logica, " & "chk_Atividade, chk_Tempo, " & _
                 "popup, critico, color, servidor, camera, monitor, telacheia, user_cftv, senha)" & _
                 " VALUES (" & fEntity.vId & np & txtNumeroZona & rp & txtSerialNumber & bp & _
                 txtLocalZona & bp & txtLocalLogica & bp & Trim(txtArquivo) & bp & lUID & bp & lPTI & lp & _
-                lReceptor & np & lTipoDevice & np & lInicialZona & np & lCheck & np & lJanela & np & lTipoLogica & np & _
+                lReceptor & np & lTipoDevice & np & lGrupo & np & lInicialZona & np & lCheck & np & lJanela & np & lTipoLogica & np & _
                 lNumeroLogica & np & lAtividade & np & lTempo & ", " & lPopup & ", " & lCritico & ", " & lColor & _
                 ", '" & txtServerAddress & "', '" & txtCamera & "', '" & txtMonitor & "', " & lTelaCheia & _
                 ", '" & txtUser & "', '" & txtPasswd & "')"
@@ -1841,7 +1905,7 @@ Private Function Update_Register() As Boolean
                 "', Local_Sensor='" & txtLocalZona & "', Local_Logica='" & txtLocalLogica & _
                 "', Arquivo='" & Trim(txtArquivo) & " ', UID='" & lUID & "', PTI='" & lPTI & _
                 "', Receptor=" & lReceptor & ", Tipo_Sensor=" & lTipoDevice & ", Inicial_Sensor=" & _
-                lInicialZona & ", Check_Sensor=" & lCheck & _
+                lInicialZona & ", Check_Sensor=" & lCheck & ", fk_grupo=" & lGrupo & _
                 ", Janela_Sensor=" & lJanela & ", Tipo_Logica=" & lTipoLogica & ", Numero_Logica=" & _
                 lNumeroLogica & ", chk_Atividade=" & lAtividade & ", chk_Tempo=" & lTempo & _
                 ", popup=" & lPopup & ", critico=" & lCritico & ", color=" & lColor & ", servidor='" & _
@@ -1880,6 +1944,7 @@ Private Function Update_Register() As Boolean
          .telaCheia = lTelaCheia
          .user = txtUser
          .senha = txtPasswd
+         .grupo = lGrupo
       End With
       fEntity.Add fModule, lUID
       lstModule.Add Item:=fModule, Key:=lUID
@@ -1995,7 +2060,9 @@ Private Sub Load_Register()
     Else
         txtPasswd = ""
     End If
-
+    
+    txtGrupo = rsSensor("fk_grupo")
+    
    If txtUID <> rsSensor("UID") Then
       Err.Raise invalidLoadReg
    Else
@@ -2107,6 +2174,7 @@ Private Sub Default_Values()
     imgTratamento.Visible = False
     fraColor.Visible = False
     txtColor = 4   'vbWhite
+    txtGrupo = 0
 End Sub
 
 Private Sub Verify_Zona_AND()
@@ -2209,6 +2277,22 @@ Private Function Verify_Consistency() As Boolean
    'Consistência aprovada
    Verify_Consistency = True
 End Function
+
+Private Sub LoadGrupo()
+    ' First, insert the name "Geral"
+    lstTipoGrupo.AddItem ("Geral (não especificado)")
+    Dim rsGrupo As ADODB.Recordset
+    Set rsGrupo = New ADODB.Recordset
+    rsGrupo.CursorLocation = adUseClient
+    rsGrupo.CursorType = adOpenStatic
+    rsGrupo.LockType = adLockReadOnly
+    rsGrupo.Open "Select * From Grupo", cnDB
+    While Not rsGrupo.EOF
+       lstTipoGrupo.AddItem (rsGrupo("Descrição"))
+       rsGrupo.MoveNext
+    Wend
+    rsGrupo.Close
+End Sub
 
 Private Sub LoadSensor()
    On Error Resume Next
@@ -2342,8 +2426,9 @@ TreatUpdate:
                .telaCheia = rsSensor("telaCheia")
                .user = rsSensor("user_cftv")
                .senha = rsSensor("senha")
+               .popup = rsSensor("popup")
+               .grupo = rsSensor("grupo")
             On Error GoTo 0
-            .popup = rsSensor("popup")
          End With
          fEntity.Add fModule, rsSensor("UID")
          lstModule.Add Item:=fModule, Key:=rsSensor("UID")

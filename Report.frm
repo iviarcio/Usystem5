@@ -684,9 +684,9 @@ Private Function Access_Prepare(ByVal fAll As Boolean) As Boolean
 End Function
 
 Private Sub Form_Activate()
-   cmdCleanUp.Visible = (m_tAccess = sxSystem)
-   imgCleanUp.Visible = (m_tAccess = sxSystem)
-   lblCleanUp.Visible = (m_tAccess = sxSystem)
+   cmdCleanUp.Visible = (m_tAccess = sxAdministrador)
+   imgCleanUp.Visible = (m_tAccess = sxAdministrador)
+   lblCleanUp.Visible = (m_tAccess = sxAdministrador)
    cmdCleanUp.Enabled = True
    fNoUpdate = False
    Set mList = New XArrayDB

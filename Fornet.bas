@@ -169,8 +169,9 @@ End Enum
 
 Public Enum typeAccess
    sxOperator = 0
-   sxAdministrator = 1
-   sxSystem = 2
+   sxSupervisor = 1
+   sxAdministrador = 2
+   sxSystem = 3
 End Enum
 
 'Tipo e variável utilizada para a desativação de Zonas Inicialmente ativadas
@@ -188,7 +189,7 @@ Public Const ALTERNATE = 1
 Public Const WINDING = 2
 
 'Strings que denotam o tipo de acesso ao USystem
-Public strAccess(0 To 2) As String
+Public strAccess(0 To 3) As String
 
 'Strings que denotam os tipos de sensores e status dos mesmos
 Public strTipo(0 To 8) As String
@@ -295,6 +296,9 @@ Public tQueue As New clsQueue
 
 'Tabela PTI (Product Type Identification)
 Public lstPTI As New Collection
+
+'Lista de grupos de Sensores
+Public lstGrupo As New Collection
 
 'Lista de Pisos e Piso corrente
 Public lstPiso As New Collection
@@ -474,6 +478,7 @@ Sub Main()
       Load_Entities           'Carrega as entidades
       Load_Percursos          'Carrega os percursos de ronda
       Load_PTI                'Carrega a Tabela PTI
+      Load_Grupo              'Carrega a Lista de Grupos de Sensores
       Event_Populate          'Carrega os últimos eventos ocorridos
       Data_CleanUp            'Horários de abertura
       'LastEvents_CleanUp 100  'Limpa a tabela últimos eventos exceto os ultimos 100 registros
@@ -500,8 +505,9 @@ End Sub
 
 Private Sub Ctes_Init()
    strAccess(0) = "Operador "
-   strAccess(1) = "Administrador "
-   strAccess(2) = "Sistema "
+   strAccess(1) = "Supervisor "
+   strAccess(2) = "Administrador "
+   strAccess(3) = "Sistema"
 
    strTipo(0) = "Incêndio"
    strTipo(1) = "Intrusão"
@@ -693,8 +699,13 @@ Private Sub Entity_Populate()
                .telaCheia = lrsModule("telaCheia")
                .user = lrsModule("user_cftv")
                .senha = lrsModule("senha")
-            On Error GoTo 0
             .popup = lrsModule("popup")
+            If IsNull(lrsModule("grupo")) Then
+                .grupo = 0
+            Else
+                .grupo = lrsModule("grupo")
+            End If
+            On Error GoTo 0
          End With
          
          tEntity.Add tModule, lrsModule("UID")
@@ -770,6 +781,24 @@ Private Sub Load_PTI()
       IncProgress
    Wend
    rsPTI.Close
+End Sub
+
+'Rotina que carrega a lista de grupos de sensores
+Private Sub Load_Grupo()
+    ' First, insert the name "Geral"
+    lstGrupo.Add Item:="Geral (não especificado)"
+    Dim rsGrupo As ADODB.Recordset
+    Set rsGrupo = New ADODB.Recordset
+    rsGrupo.CursorLocation = adUseClient
+    rsGrupo.CursorType = adOpenStatic
+    rsGrupo.LockType = adLockReadOnly
+    rsGrupo.Open "Select * From Grupo", cnDB
+    While Not rsGrupo.EOF
+       lstGrupo.Add Item:=rsGrupo("Descrição")
+       rsGrupo.MoveNext
+       IncProgress
+    Wend
+    rsGrupo.Close
 End Sub
 
 'Rotina que carrega os Últimos Eventos ocorridos

@@ -404,7 +404,7 @@ Private Sub Alter_Passwd()
 End Sub
 
 Private Sub cmdAlter()
-   If (m_tAccess = sxAdministrator) And (lstType.ListIndex = 2) Then
+   If (m_tAccess = sxSupervisor) And (lstType.ListIndex = 2) Then
       Beep
       Exit Sub
    End If
@@ -420,7 +420,7 @@ Private Sub cmdAlter()
 End Sub
 
 Private Sub cmdPassword()
-   If (m_tAccess = sxAdministrator) And (lstType.ListIndex = 2) Then
+   If (m_tAccess = sxSupervisor) And (lstType.ListIndex = 2) Then
       Beep
       Exit Sub
    End If
@@ -511,7 +511,7 @@ End Sub
 
 Private Sub lstType_Click()
    If fmode <> EMPNEW Then
-      If m_tAccess = sxSystem Then
+      If m_tAccess = sxAdministrador Then
          If rsEmployee("Name") <> "FOR" Then
             SetAppearence btnAccess(0), True
          Else
@@ -522,7 +522,7 @@ Private Sub lstType_Click()
          Beep
          Update_LstType
       End If
-   ElseIf m_tAccess <> sxSystem And lstType.ListIndex = 2 Then
+   ElseIf m_tAccess <> sxAdministrador And lstType.ListIndex = 2 Then
       Beep
       lstType.ListIndex = 1
    End If
@@ -540,7 +540,7 @@ Private Sub cmdDelete()
    If rsEmployee("Name") = "FOR" Then
       MsgBox "Sistema 'FOR' não pode ser excluído.", sxInformation, sxProname
       Exit Sub
-   ElseIf (m_tAccess = sxAdministrator) And (lstType.ListIndex = 2) Then
+   ElseIf (m_tAccess = sxSupervisor) And (lstType.ListIndex = 2) Then
       MsgBox "Administrador não pode excluir Usuário de Sistema!", sxInformation, sxProname
       Exit Sub
    End If
