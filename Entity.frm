@@ -614,16 +614,24 @@ Private Sub btnCad_Click(Index As Integer)
       Case 5
          mnuLastEvent_Click
       Case 6
-         fEntity.Activate s_All
-         mnuDesativ.Enabled = True
-         mnuAtivar.Enabled = fEntity.hasZonasDesativadas
-         Grid_Load
+         tGrupo = -1
+         frmGrupo.Show vbModal
+         If tGrupo <> -1 Then
+            fEntity.Activate s_All, tGrupo
+            mnuDesativ.Enabled = True
+            mnuAtivar.Enabled = fEntity.hasZonasDesativadas
+            Grid_Load
+         End If
       Case 7
-         qResponse = sxQNone
-         fEntity.Deactivate s_All
-         mnuDesativ.Enabled = fEntity.hasZonasAtivadas
-         mnuAtivar.Enabled = True
-         Grid_Load
+         tGrupo = -1
+         frmGrupo.Show vbModal
+         If tGrupo <> -1 Then
+            qResponse = sxQNone
+            fEntity.Deactivate s_All, tGrupo
+            mnuDesativ.Enabled = fEntity.hasZonasAtivadas
+            mnuAtivar.Enabled = True
+            Grid_Load
+         End If
       Case 8
          mnuExit_Click
    End Select
@@ -680,43 +688,63 @@ Private Sub Form_Unload(Cancel As Integer)
 End Sub
 
 Private Sub mnuActEmergencia_Click()
-   fEntity.Activate s_Emergencia
-   Make_Service "Ativação dos Sensores de Emergência", strAccess(m_tAccess) & m_sUser, fEntity
-   mnuDesativ.Enabled = True
-   mnuAtivar.Enabled = fEntity.hasZonasDesativadas
-   Grid_Load
+    tGrupo = -1
+    frmGrupo.Show vbModal
+    If tGrupo <> -1 Then
+        fEntity.Activate s_Emergencia, tGrupo
+        Make_Service "Ativação dos Sensores de Emergência", strAccess(m_tAccess) & m_sUser, fEntity
+        mnuDesativ.Enabled = True
+        mnuAtivar.Enabled = fEntity.hasZonasDesativadas
+        Grid_Load
+    End If
 End Sub
 
 Private Sub mnuActIncendio_Click()
-   fEntity.Activate s_Incendio
-   Make_Service "Ativação dos Sensores de Incêndio", strAccess(m_tAccess) & m_sUser, fEntity
-   mnuDesativ.Enabled = True
-   mnuAtivar.Enabled = fEntity.hasZonasDesativadas
-   Grid_Load
+    tGrupo = -1
+    frmGrupo.Show vbModal
+    If tGrupo <> -1 Then
+        fEntity.Activate s_Incendio, tGrupo
+        Make_Service "Ativação dos Sensores de Incêndio", strAccess(m_tAccess) & m_sUser, fEntity
+        mnuDesativ.Enabled = True
+        mnuAtivar.Enabled = fEntity.hasZonasDesativadas
+        Grid_Load
+    End If
 End Sub
 
 Private Sub mnuActIntrusao_Click()
-   fEntity.Activate s_Intrusao
-   Make_Service "Ativação dos Sensores de Intrusão", strAccess(m_tAccess) & m_sUser, fEntity
-   mnuDesativ.Enabled = True
-   mnuAtivar.Enabled = fEntity.hasZonasDesativadas
-   Grid_Load
+    tGrupo = -1
+    frmGrupo.Show vbModal
+    If tGrupo <> -1 Then
+        fEntity.Activate s_Intrusao, tGrupo
+        Make_Service "Ativação dos Sensores de Intrusão", strAccess(m_tAccess) & m_sUser, fEntity
+        mnuDesativ.Enabled = True
+        mnuAtivar.Enabled = fEntity.hasZonasDesativadas
+        Grid_Load
+    End If
 End Sub
 
 Private Sub mnuActPanico_Click()
-   fEntity.Activate s_Panico
-   Make_Service "Ativação dos Sensores de Pânico", strAccess(m_tAccess) & m_sUser, fEntity
-   mnuDesativ.Enabled = True
-   mnuAtivar.Enabled = fEntity.hasZonasDesativadas
-   Grid_Load
+    tGrupo = -1
+    frmGrupo.Show vbModal
+    If tGrupo <> -1 Then
+        fEntity.Activate s_Panico, tGrupo
+        Make_Service "Ativação dos Sensores de Pânico", strAccess(m_tAccess) & m_sUser, fEntity
+        mnuDesativ.Enabled = True
+        mnuAtivar.Enabled = fEntity.hasZonasDesativadas
+        Grid_Load
+    End If
 End Sub
 
 Private Sub mnuActSistema_Click()
-   fEntity.Activate s_Sistema
-   Make_Service "Ativação dos Sensores de Sistema", strAccess(m_tAccess) & m_sUser, fEntity
-   mnuDesativ.Enabled = True
-   mnuAtivar.Enabled = fEntity.hasZonasDesativadas
-   Grid_Load
+    tGrupo = -1
+    frmGrupo.Show vbModal
+    If tGrupo <> -1 Then
+        fEntity.Activate s_Sistema, tGrupo
+        Make_Service "Ativação dos Sensores de Sistema", strAccess(m_tAccess) & m_sUser, fEntity
+        mnuDesativ.Enabled = True
+        mnuAtivar.Enabled = fEntity.hasZonasDesativadas
+        Grid_Load
+    End If
 End Sub
 
 Private Sub mnuAlterar_Click()
@@ -736,48 +764,68 @@ Private Sub mnuConfig_Click()
 End Sub
 
 Private Sub mnuDeacEmergencia_Click()
-   qResponse = sxQNone
-   fEntity.Deactivate s_Emergencia
-   Make_Service "Desativação dos Sensores de Emergencia", strAccess(m_tAccess) & m_sUser, fEntity
-   mnuDesativ.Enabled = fEntity.hasZonasAtivadas
-   mnuAtivar.Enabled = True
-   Grid_Load
+    tGrupo = -1
+    frmGrupo.Show vbModal
+    If tGrupo <> -1 Then
+        qResponse = sxQNone
+        fEntity.Deactivate s_Emergencia, tGrupo
+        Make_Service "Desativação dos Sensores de Emergencia", strAccess(m_tAccess) & m_sUser, fEntity
+        mnuDesativ.Enabled = fEntity.hasZonasAtivadas
+        mnuAtivar.Enabled = True
+        Grid_Load
+    End If
 End Sub
 
 Private Sub mnuDeacIncendio_Click()
-   qResponse = sxQNone
-   fEntity.Deactivate s_Incendio
-   Make_Service "Desativação dos Sensores de Incêndio", strAccess(m_tAccess) & m_sUser, fEntity
-   mnuDesativ.Enabled = fEntity.hasZonasAtivadas
-   mnuAtivar.Enabled = True
-   Grid_Load
+    tGrupo = -1
+    frmGrupo.Show vbModal
+    If tGrupo <> -1 Then
+        qResponse = sxQNone
+        fEntity.Deactivate s_Incendio, tGrupo
+        Make_Service "Desativação dos Sensores de Incêndio", strAccess(m_tAccess) & m_sUser, fEntity
+        mnuDesativ.Enabled = fEntity.hasZonasAtivadas
+        mnuAtivar.Enabled = True
+        Grid_Load
+    End If
 End Sub
 
 Private Sub mnuDeacIntrusao_Click()
-   qResponse = sxQNone
-   fEntity.Deactivate s_Intrusao
-   Make_Service "Desativação dos Sensores de Intrusão", strAccess(m_tAccess) & m_sUser, fEntity
-   mnuDesativ.Enabled = fEntity.hasZonasAtivadas
-   mnuAtivar.Enabled = True
-   Grid_Load
+    tGrupo = -1
+    frmGrupo.Show vbModal
+    If tGrupo <> -1 Then
+        qResponse = sxQNone
+        fEntity.Deactivate s_Intrusao, tGrupo
+        Make_Service "Desativação dos Sensores de Intrusão", strAccess(m_tAccess) & m_sUser, fEntity
+        mnuDesativ.Enabled = fEntity.hasZonasAtivadas
+        mnuAtivar.Enabled = True
+        Grid_Load
+    End If
 End Sub
 
 Private Sub mnuDeacPanico_Click()
-   qResponse = sxQNone
-   fEntity.Deactivate s_Panico
-   Make_Service "Desativação dos Sensores de Pânico", strAccess(m_tAccess) & m_sUser, fEntity
-   mnuDesativ.Enabled = fEntity.hasZonasAtivadas
-   mnuAtivar.Enabled = True
-   Grid_Load
+    tGrupo = -1
+    frmGrupo.Show vbModal
+    If tGrupo <> -1 Then
+        qResponse = sxQNone
+        fEntity.Deactivate s_Panico, tGrupo
+        Make_Service "Desativação dos Sensores de Pânico", strAccess(m_tAccess) & m_sUser, fEntity
+        mnuDesativ.Enabled = fEntity.hasZonasAtivadas
+        mnuAtivar.Enabled = True
+        Grid_Load
+    End If
 End Sub
 
 Private Sub mnuDeacSistema_Click()
-   qResponse = sxQNone
-   fEntity.Deactivate s_Sistema
-   Make_Service "Desativação dos Sensores de Sistema", strAccess(m_tAccess) & m_sUser, fEntity
-   mnuDesativ.Enabled = fEntity.hasZonasAtivadas
-   mnuAtivar.Enabled = True
-   Grid_Load
+    tGrupo = -1
+    frmGrupo.Show vbModal
+    If tGrupo <> -1 Then
+        qResponse = sxQNone
+        fEntity.Deactivate s_Sistema, tGrupo
+        Make_Service "Desativação dos Sensores de Sistema", strAccess(m_tAccess) & m_sUser, fEntity
+        mnuDesativ.Enabled = fEntity.hasZonasAtivadas
+        mnuAtivar.Enabled = True
+        Grid_Load
+    End If
 End Sub
 
 Private Sub mnuExit_Click()

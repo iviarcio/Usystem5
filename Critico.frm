@@ -158,7 +158,7 @@ Begin VB.Form frmCritico
       Top             =   2520
       Width           =   6435
    End
-   Begin VB.TextBox txtKind 
+   Begin VB.TextBox txtScope 
       Height          =   375
       Left            =   1680
       TabIndex        =   0
@@ -458,7 +458,7 @@ Private Sub btnOk_Click()
 
    If lAccess Then
       With crModule
-         .crKind = txtKind
+         .crScope = txtScope
          .crAcao = txtAcao
          .crObs = txtObs
          .crUser = txtUser
@@ -474,7 +474,7 @@ Private Sub btnOk_Click()
 End Sub
 
 Private Sub Option1_Click(Index As Integer)
-   txtKind.Text = Index
+   txtScope.Text = Index
 End Sub
 
 'Private Sub switchCamera(ByVal fSpot As Integer)

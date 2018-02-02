@@ -18,6 +18,7 @@ Public evDate As String          'Data do evento (dd/mm/yyyy hh:mm:ss)
 Public evStr As String           'Informações sobre o Evento
 Public evDescr As String         'Descrição da Entidade onde ocorreu o evento
 Public evTipo As Integer         'Tipo do Evento (Intrusão, pânico, ...)
+Public evKind As kindEvent
 Public comm As Integer           'Número da porta que recebeu o evento
 Public evHex As String
 Public evIn As String
@@ -34,7 +35,7 @@ Public ssMargin As String
 Public sDeviceName As String
 Public sMID As String
 Public evCritico As Boolean      'Indicação de Evento crítico
-Public evKind As Byte            '0: Real, 1: Acidental, 2: Teste
+Public evScope As Byte            '0: Real, 1: Acidental, 2: Teste
 Public evAcao As String          'Ação tomada no tratamento de evento crítico
 Public evObs As String           'Observações adicionais
 Public evTreat As String         'Hora do tratamento de evento crítico

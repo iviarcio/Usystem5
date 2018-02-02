@@ -92,6 +92,7 @@ Class=clsDigiFort; DigiFort.cls
 Module=SysInfo; SysInfo.bas
 Form=Panico.frm
 Designer=Relatorios\RptCriticos.Dsr
+Form=Grupo.frm
 IconForm="frmCadastro"
 Startup="Sub Main"
 HelpFile=""

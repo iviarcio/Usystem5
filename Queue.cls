@@ -44,15 +44,16 @@ Public Function Enqueue(Value As String, commPort As Integer) As Boolean
 
     'If No duplicate then...
     With tEvent
-        'Separa os elementos da Mensagem
+        .evHex = Value ' full message
+        'split message values
         .comm = commPort
         .sHeader = Left(Value, 2)
         .sMID = Mid(Value, 5, 2)
-        If .sHeader = H_Serial Then     'Trata o Serial Receiver
+        If .sHeader = H_Serial Then     'Treat Serial Receiver
             .ssData = Mid(Value, 5, 2)
             .sStat0 = Mid(Value, 7, 2)
             .sDeviceName = "Receiver"
-        ElseIf .sHeader = H_Device And .sMID = MID_Repeater Then    'Trata os Repeaters
+        ElseIf .sHeader = H_Device And .sMID = MID_Repeater Then    'Treat Repeaters
             .sUIDo = Mid(Value, 5, 8)
             .sUIDh = Mid(Value, 13, 8)
             .sClasse = Mid(Value, 21, 2)
@@ -61,7 +62,7 @@ Public Function Enqueue(Value As String, commPort As Integer) As Boolean
             .ssLevel = Mid(Value, 27, 2)
             .ssMargin = Mid(Value, 29, 2)
             .sDeviceName = "Repeater"
-        ElseIf .sHeader = H_Device And .sMID = MID_Sensor Then    'Trata os Sensores
+        ElseIf .sHeader = H_Device And .sMID = MID_Sensor Then    'Treat Sensors
             .sUIDo = Mid(Value, 5, 8)
             .sUIDh = Mid(Value, 13, 8)
             .sPTI = Mid(Value, 21, 2)
@@ -69,7 +70,7 @@ Public Function Enqueue(Value As String, commPort As Integer) As Boolean
             .sStat0 = Mid(Value, 25, 2)
             .ssLevel = Mid(Value, 27, 2)
             .ssMargin = Mid(Value, 29, 2)
-            .sDeviceName = Device_Name(.sPTI)    'Busca o nome do Device na base
+            .sDeviceName = Device_Name(.sPTI)    'Seek device name on base
         End If
         .evDate = Format(Now, "dd/mm/yyyy hh:mm:ss")
     End With

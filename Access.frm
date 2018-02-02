@@ -51,7 +51,9 @@ Begin VB.Form frmAccess
             Strikethrough   =   0   'False
          EndProperty
          Height          =   870
+         ItemData        =   "Access.frx":030A
          Left            =   120
+         List            =   "Access.frx":030C
          TabIndex        =   3
          Top             =   360
          Width           =   3495
@@ -65,8 +67,8 @@ Begin VB.Form frmAccess
          Width           =   720
          _ExtentX        =   1270
          _ExtentY        =   1270
-         Image           =   "Access.frx":030A
-         Effects         =   "Access.frx":1433
+         Image           =   "Access.frx":030E
+         Effects         =   "Access.frx":1437
       End
    End
    Begin VB.Frame fraUser 
@@ -113,8 +115,8 @@ Begin VB.Form frmAccess
          Width           =   960
          _ExtentX        =   1693
          _ExtentY        =   1270
-         Image           =   "Access.frx":144B
-         Effects         =   "Access.frx":25D8
+         Image           =   "Access.frx":144F
+         Effects         =   "Access.frx":25DC
       End
       Begin LaVolpeAlphaImg.AlphaImgCtl btnAccess 
          Height          =   720
@@ -125,8 +127,8 @@ Begin VB.Form frmAccess
          Width           =   720
          _ExtentX        =   1270
          _ExtentY        =   1270
-         Image           =   "Access.frx":25F0
-         Effects         =   "Access.frx":3708
+         Image           =   "Access.frx":25F4
+         Effects         =   "Access.frx":370C
       End
       Begin LaVolpeAlphaImg.AlphaImgCtl btnAccess 
          Height          =   720
@@ -137,8 +139,8 @@ Begin VB.Form frmAccess
          Width           =   720
          _ExtentX        =   1270
          _ExtentY        =   1270
-         Image           =   "Access.frx":3720
-         Effects         =   "Access.frx":46B1
+         Image           =   "Access.frx":3724
+         Effects         =   "Access.frx":46B5
       End
    End
    Begin VB.Frame fraNew 
@@ -220,8 +222,8 @@ Begin VB.Form frmAccess
          Width           =   720
          _ExtentX        =   1270
          _ExtentY        =   1270
-         Image           =   "Access.frx":46C9
-         Effects         =   "Access.frx":57AD
+         Image           =   "Access.frx":46CD
+         Effects         =   "Access.frx":57B1
       End
       Begin LaVolpeAlphaImg.AlphaImgCtl btnAccess 
          Height          =   720
@@ -232,8 +234,8 @@ Begin VB.Form frmAccess
          Width           =   720
          _ExtentX        =   1270
          _ExtentY        =   1270
-         Image           =   "Access.frx":57C5
-         Effects         =   "Access.frx":68DD
+         Image           =   "Access.frx":57C9
+         Effects         =   "Access.frx":68E1
       End
       Begin VB.Label lbl1 
          Alignment       =   1  'Right Justify
@@ -302,8 +304,8 @@ Begin VB.Form frmAccess
       Width           =   960
       _ExtentX        =   1693
       _ExtentY        =   1693
-      Image           =   "Access.frx":68F5
-      Effects         =   "Access.frx":7C14
+      Image           =   "Access.frx":68F9
+      Effects         =   "Access.frx":7C18
    End
 End
 Attribute VB_Name = "frmAccess"
@@ -481,8 +483,8 @@ End Sub
 
 Private Sub Form_Load()
    lstType.AddItem "Operador"
+   lstType.AddItem "Supervisor"
    lstType.AddItem "Administrador"
-   lstType.AddItem "Sistema"
    lstType.Enabled = m_tAccess <> sxOperator
    fmode = NONE
    
@@ -537,11 +539,11 @@ End Sub
 
 Private Sub cmdDelete()
    SetAppearence btnAccess(0), False
-   If rsEmployee("Name") = "FOR" Then
-      MsgBox "Sistema 'FOR' não pode ser excluído.", sxInformation, sxProname
+   If rsEmployee("Name") = "for" Then
+      MsgBox "Administraor 'for' não pode ser excluído.", sxInformation, sxProname
       Exit Sub
    ElseIf (m_tAccess = sxSupervisor) And (lstType.ListIndex = 2) Then
-      MsgBox "Administrador não pode excluir Usuário de Sistema!", sxInformation, sxProname
+      MsgBox "Supervisor não pode excluir Usuário Administrador de Sistema!", sxInformation, sxProname
       Exit Sub
    End If
    Dim res%

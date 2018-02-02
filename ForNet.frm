@@ -537,7 +537,7 @@ Begin VB.MDIForm ForNet
             Style           =   5
             Object.Width           =   1411
             MinWidth        =   1411
-            TextSave        =   "12:18"
+            TextSave        =   "19:46"
          EndProperty
          BeginProperty Panel5 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Bevel           =   0
@@ -1287,24 +1287,11 @@ Private Sub SimulaEventos()
    ct = 4 'default
    On Error Resume Next
    ct = InputBox("case number: ", "0..4=Receiver, 5..9=Repeater, 10..16=Sensor")
-'   If ct >= 10 Then
-'      Sensor = InputBox("Sensor: ", "Forneça o código do Sensor (default= B25F1F98)", "B25F1F98")
-'   End If
    numEvents = InputBox("Número de Eventos:", "Número de Eventos (default=1)", 1)
    
    Sensor(0) = InputBox("Número do Sensor:", "Alarme", "B2970195")
-'   Sensor(0) = "B286A378"
-'   Sensor(1) = "B28CAF00"
-'   Sensor(2) = "B28C062E"
-'   Sensor(3) = "B28CAEF4"
-'   Sensor(4) = "B28C062A"
    
    i = 0
-'   numEvents = 2
-'   ct = 16
-'   loopControl = True
-'   Do While loopControl
-   
      For j = 1 To numEvents
          
       Select Case ct
@@ -1374,16 +1361,7 @@ Private Sub SimulaEventos()
       DoEvents
       Sleep 4000 ' to sleep for 4 seconds
       DoEvents
-      
      Next j
-   
-'     i = i + 1
-'     If i > j Then
-'        i = 0
-'        loopControl = False     'comment this line for infinite loop
-'     End If
-'   Loop
-
 End Sub
 
 Private Sub mnuBottom_Click()
@@ -1499,7 +1477,6 @@ Private Sub LogOn_Display(ByVal fchg As Boolean)
    Else
       m_bShutDown = True
    End If
-   
 End Sub
 
 Private Sub mnuAEIncendio_Click()
@@ -1599,26 +1576,34 @@ Private Sub MonitorUpdate(fStatus As Boolean)
 End Sub
 
 Public Sub MonitorActivate(fmode As typeSensor, fAll As Boolean)
-   If fAll Then
-      Dim lEntity As clsEntity
-      For Each lEntity In lstEntity
-         lEntity.Activate fmode
-      Next
-   Else
-      tEntity.Activate fmode
-   End If
+    tGrupo = -1
+    frmGrupo.Show vbModal
+    If tGrupo <> -1 Then
+        If fAll Then
+            Dim lEntity As clsEntity
+            For Each lEntity In lstEntity
+                lEntity.Activate fmode, tGrupo
+            Next
+        Else
+            tEntity.Activate fmode, tGrupo
+        End If
+    End If
 End Sub
 
 Public Sub MonitorDeactivate(fmode As typeSensor, fAll As Boolean)
-   qResponse = sxQNone
-   If fAll Then
-      Dim lEntity As clsEntity
-      For Each lEntity In lstEntity
-         lEntity.Deactivate fmode
-      Next
-   Else
-      tEntity.Deactivate fmode
-   End If
+    qResponse = sxQNone
+    tGrupo = -1
+    frmGrupo.Show vbModal
+    If tGrupo <> -1 Then
+        If fAll Then
+            Dim lEntity As clsEntity
+            For Each lEntity In lstEntity
+               lEntity.Deactivate fmode, tGrupo
+            Next
+        Else
+            tEntity.Deactivate fmode, tGrupo
+        End If
+    End If
 End Sub
 
 Private Sub mnuIZEmergencia_Click()
@@ -1865,8 +1850,6 @@ Public Sub Update_Display(fStr As String, ByVal fImgIndex As Integer, ByVal fEve
          StatusBar1.Panels.Item(2).Text = fStr
          If fImgIndex = sxImgNone Then
            Set StatusBar1.Panels.Item(2).Picture = Nothing
-         Else
-           'Set StatusBar1.Panels.Item(2).Picture = ImageList1.ListImages(fImgIndex).Picture
          End If
       End If
    End If
@@ -2074,18 +2057,25 @@ End Sub
 
 Private Sub SetStatus(ByVal fAccess As typeAccess)
 
-   SetAppearence btnAction(12), (m_tAccess = sxAdministrador) Or (m_tAccess = sxSupervisor)
-   SetAppearence btnAction(13), (m_tAccess = sxAdministrador)
-   SetAppearence btnAction(14), (m_tAccess = sxAdministrador)
-   SetAppearence btnAction(11), (fAccess <> sxOperator)
-   SetAppearence btnAction(15), (fAccess <> sxOperator)
-   
-   mnuExit.Enabled = fAccess <> sxOperator
-   mnuConfig.Enabled = fAccess = sxAdministrador
-   mnuModeDesign.Enabled = fAccess = sxAdministrador
-   mnuPisos.Enabled = fAccess <> sxOperator
-   mnuBackup.Enabled = fAccess <> sxOperator
-   mnuBaseStatus.Enabled = fAccess <> sxOperator
+    If fAccess = sxSystem Then
+        Dim i As Integer
+        For i = 11 To 15
+            SetAppearence btnAction(i), True
+        Next i
+    Else
+        SetAppearence btnAction(12), (m_tAccess = sxAdministrador) Or (m_tAccess = sxSupervisor)
+        SetAppearence btnAction(13), (m_tAccess = sxAdministrador)
+        SetAppearence btnAction(14), False  '(m_tAccess = sxAdministrador)
+        SetAppearence btnAction(11), (fAccess <> sxOperator)
+        SetAppearence btnAction(15), (fAccess <> sxOperator)
+    End If
+    
+    mnuExit.Enabled = fAccess <> sxOperator
+    mnuConfig.Enabled = (fAccess = sxAdministrador) Or (fAccess = sxSystem)
+    mnuModeDesign.Enabled = (fAccess = sxAdministrador) Or (fAccess = sxSystem)
+    mnuPisos.Enabled = fAccess <> sxOperator
+    mnuBackup.Enabled = fAccess <> sxOperator
+    mnuBaseStatus.Enabled = fAccess <> sxOperator
    
 End Sub
 

@@ -105,15 +105,15 @@ Public Sub EventAdd(fEvent As clsEvent)
                       "Tipo_Sensor, Date_Event, Hour_Event, Descr_Event, crKind, crUser, crAcao, crObs, crTreat) VALUES (" & _
                       cM.mEntity & ",'" & fEvent.evDescr & "', '" & cM.UID & "', '" & cM.mLocal & "','" & _
                       strTipo(cM.mTipo) & "','" & fEvent.evDate & "','" & fEvent.evDate & _
-                      "', '" & fEvent.evStr & "', " & fEvent.evKind & ", '" & fEvent.evUser & "', '" & _
+                      "', '" & fEvent.evStr & "', " & fEvent.evScope & ", '" & fEvent.evUser & "', '" & _
                       fEvent.evAcao & "', '" & fEvent.evObs & "', '" & fEvent.evTreat & "')"
    
    Else
    lcmd.CommandText = "INSERT INTO Event (fk_Entity, Descr_Entity, fk_Sensor, Descr_Sensor, " & _
-                      "Tipo_Sensor, Date_Event, Hour_Event, Descr_Event) VALUES (" & _
+                      "Tipo_Sensor, Date_Event, Hour_Event, Descr_Event, kind_Event) VALUES (" & _
                       cM.mEntity & ",'" & fEvent.evDescr & "', '" & cM.UID & "', '" & cM.mLocal & "','" & _
                       strTipo(cM.mTipo) & "','" & fEvent.evDate & "','" & fEvent.evDate & _
-                      "','" & fEvent.evStr & "')"
+                      "','" & fEvent.evStr & "', " & fEvent.evKind & ")"
    End If
    lcmd.Execute
 End Sub
@@ -704,14 +704,16 @@ Public Function FreeSpotNumber(ByVal Value As Integer) As Integer
 End Function
 
 Public Sub Control_LastEvents()
+    ' keep only two thousand events
     Static ntimes As Integer ' init = 0
     sizeLastEvents = sizeLastEvents + 1
-    If sizeLastEvents > 200 Then
-        sizeLastEvents = 100
-        LastEvents_CleanUp 100
+    If sizeLastEvents >= 2100 Then
+        sizeLastEvents = 2000
+        LastEvents_CleanUp 2000
         ntimes = ntimes + 1
     End If
-    If ntimes >= 10 Then
+    ' compact DB after two thousand deleted events
+    If ntimes >= 20 Then
         ntimes = 0
         CompactDB
     End If

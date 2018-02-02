@@ -63,7 +63,7 @@ Private mSZona As typeZona       'Situação corrente da Zona
 Private nivel_Sinal As Byte      'Níveis de sinal 0 a 8
 Public critico As Boolean        'Sinaliza evento crítico (será apresentado via Popup)
 Public crColor As Integer        'Cor de fundo do evento na tela de Popups (0: vbRed, ...)
-Public crKind As Byte            '0 =  real, 1 = acidental, 2 = teste
+Public crScope As Byte            '0 =  real, 1 = acidental, 2 = teste
 Public crAcao As String          'Última ação tomada
 Public crObs As String           'Última observação
 Public crUser As String          'Usuário que restritou a ação
@@ -287,6 +287,7 @@ Private Sub EventRegistry(fEntity As clsEntity, fEvent As clsEvent)
 '   fEvent.evCritico = False
    fEvent.evDescr = fEntity.vDescr
    fEvent.evTipo = mTipo
+   fEvent.evKind = kevAlarme
    fEntity.EventAdd fEvent
    EventAdd fEvent
    
@@ -319,6 +320,7 @@ Public Sub TreatRuido(ByVal fvalue As Boolean, fEvent As clsEvent)
           .evDate = fEvent.evDate
           .evStr = fEvent.evStr
           .evTipo = fEvent.evTipo
+          .evKind = kevRuido
       End With
       lEntity.EventAdd tEvent
       EventAdd tEvent
@@ -352,6 +354,7 @@ Public Sub TreatReset(ByVal fvalue As Boolean, fEvent As clsEvent)
           .evDate = fEvent.evDate
           .evStr = fEvent.evStr
           .evTipo = fEvent.evTipo
+          .evKind = kevReset
       End With
       lEntity.EventAdd tEvent
       EventAdd tEvent
@@ -378,6 +381,7 @@ Public Sub TreatLink(ByVal fvalue As Boolean, fEvent As clsEvent)
       Insert_Display tDisplay, False, False
       fEvent.evDescr = lEntity.vDescr
       fEvent.evTipo = mTipo
+      fEvent.evKind = kevLink
       lEntity.EventAdd fEvent
       EventAdd fEvent
    End If
@@ -410,6 +414,7 @@ Public Sub TreatRedeAC(ByVal fvalue As Boolean, fEvent As clsEvent)
           .evDate = fEvent.evDate
           .evStr = fEvent.evStr
           .evTipo = fEvent.evTipo
+          .evKind = kevRedeAC
       End With
       lEntity.EventAdd tEvent
       EventAdd tEvent
@@ -444,6 +449,7 @@ Public Sub TreatBateria(ByVal fvalue As Boolean, fEvent As clsEvent)
           .evDate = fEvent.evDate
           .evStr = fEvent.evStr
           .evTipo = fEvent.evTipo
+          .evKind = kevBateria
       End With
       lEntity.EventAdd tEvent
       EventAdd tEvent
@@ -501,6 +507,7 @@ Public Sub TreatTampa(ByVal fvalue As Boolean, fEvent As clsEvent)
           .evDate = fEvent.evDate
           .evStr = fEvent.evStr
           .evTipo = fEvent.evTipo
+          .evKind = kevTampa
       End With
       lEntity.EventAdd tEvent
       EventAdd tEvent
@@ -673,6 +680,7 @@ Public Sub SetFalha()
    Insert_Display tDisplay, False, False
    lEvent.evDescr = lEntity.vDescr
    lEvent.evTipo = mTipo
+   lEvent.evKind = kevInativ
    lEntity.EventAdd lEvent
    EventAdd lEvent
 End Sub

@@ -4,7 +4,7 @@ Option Explicit
 'Programa desenvolvido por:
 '   José D. Favoretto Jr.
 '   Marcio Machado pereira
-'Copyright © 1995-2016 FOR Segurança Eletrônica
+'Copyright © 1995-2018 FOR Segurança Eletrônica
 
 'Versão corrente do Usystem
 Public Const curVersion = "5.0"
@@ -174,6 +174,17 @@ Public Enum typeAccess
    sxSystem = 3
 End Enum
 
+Public Enum kindEvent
+    kevAlarme = 0
+    kevRuido = 1
+    kevBateria = 2
+    kevRedeAC = 3
+    kevTampa = 4
+    kevLink = 5
+    kevReset = 6
+    kevInativ = 7
+End Enum
+
 'Tipo e variável utilizada para a desativação de Zonas Inicialmente ativadas
 Public Enum typeQuestion
    sxQNone = 0
@@ -265,6 +276,7 @@ Public m_dTOpen(vbSunday To vbSaturday) As Date
 Public m_dTClose(vbSunday To vbSaturday) As Date
 Public m_iEvKeep As Integer
 
+' Controla informações de dump de falhas (debug) via make_service
 Public m_Debug As Boolean
 
 'Usuário corrente
@@ -299,6 +311,7 @@ Public lstPTI As New Collection
 
 'Lista de grupos de Sensores
 Public lstGrupo As New Collection
+Public tGrupo As Integer
 
 'Lista de Pisos e Piso corrente
 Public lstPiso As New Collection
@@ -481,7 +494,7 @@ Sub Main()
       Load_Grupo              'Carrega a Lista de Grupos de Sensores
       Event_Populate          'Carrega os últimos eventos ocorridos
       Data_CleanUp            'Horários de abertura
-      'LastEvents_CleanUp 100  'Limpa a tabela últimos eventos exceto os ultimos 100 registros
+      LastEvents_CleanUp 2000 'Limpa a tabela últimos eventos exceto os ultimos 2000 registros
       
       frmSplash.ProgressBar1.Visible = False
       DoEvents
@@ -507,7 +520,7 @@ Private Sub Ctes_Init()
    strAccess(0) = "Operador "
    strAccess(1) = "Supervisor "
    strAccess(2) = "Administrador "
-   strAccess(3) = "Sistema"
+   strAccess(3) = "Sistema "
 
    strTipo(0) = "Incêndio"
    strTipo(1) = "Intrusão"
@@ -832,6 +845,11 @@ Private Sub Event_Populate()
          Next idxTipo
          tEvent.evStr = rsEvent("Descr_Event")
          tEvent.evDescr = rsEvent("Descr_Entity")
+         If Not IsNull(rsEvent("kind_Event")) Then
+            tEvent.evKind = rsEvent("kind_Event")
+         Else
+            tEvent.evKind = kevAlarme
+         End If
          lstEvent.Add tEvent
          Set tEntity = lstEntity.Item(CStr(rsEvent("fk_Entity")))
          tEntity.EventAdd tEvent

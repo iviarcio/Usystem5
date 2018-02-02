@@ -241,7 +241,7 @@ Private Sub ChangeEvent(ByVal rs As Recordset)
       .evDescr = lEntity.vDescr
       .evCritico = True
       .evTipo = lModule.mTipo
-      .evKind = lModule.crKind
+      .evScope = lModule.crScope
       .evAcao = lModule.crAcao
       .evObs = lModule.crObs
       .evTreat = lModule.crTreat

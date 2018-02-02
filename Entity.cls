@@ -377,30 +377,22 @@ Public Sub SetInatividade()
 End Sub
 
 
-Public Sub Activate(fwichModule As typeSensor)
+Public Sub Activate(fwichModule As typeSensor, ByVal fgrupo As Integer)
    Dim lModule As clsModule
    For Each lModule In localModule
       If (fwichModule = s_All) Or (lModule.mTipo = fwichModule) Then
-         'If fwichModule = s_Atuador Then
-            'Para atuadores, indicar sempre para ativar, independente do status
-            'lModule.status = stAtivada
-         'Else
-         If (lModule.status = stDesativada) Then  'And (lModule.mTipo <> s_Atuador) Then
+         If (lModule.status = stDesativada) And lModule.grupo = fgrupo Then
             lModule.status = stAtivada
          End If
       End If
    Next
 End Sub
 
-Public Sub Deactivate(fwichModule As typeSensor)
+Public Sub Deactivate(fwichModule As typeSensor, ByVal fgrupo As Integer)
    Dim lModule As clsModule
    For Each lModule In localModule
       If (fwichModule = s_All) Or (lModule.mTipo = fwichModule) Then
-         'If fwichModule = s_Atuador Then
-            'Para atuadores, indicar sempre para desativar, independente do status
-            'lModule.status = stDesativada
-         'Else
-         If (lModule.status = stAtivada) Then  'And (lModule.mTipo <> s_Atuador) Then
+         If (lModule.status = stAtivada) And lModule.grupo = fgrupo Then
             lModule.status = stDesativada
          End If
       End If

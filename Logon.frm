@@ -311,9 +311,6 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-'Tipos de acesso
-'Private Const sxAdmin = 0
-'Private Const sxSecurity = 1
 Private Const sxMaxLen = 40
 Private regFlag As Boolean
 
@@ -324,7 +321,7 @@ Private Sub Try_Login()
       strPassword = Format(Day(Date), "00") & "f" & Format(Month(Date), "00") & "o" & Format(Right(Year(Date), 2), "00") & "r"
       If txtPassword = strPassword Then
             m_sUser = txtName
-            m_tAccess = sxAdministrador
+            m_tAccess = sxSystem
             m_bPermition = True
             m_Debug = True
             Unload Me
@@ -352,7 +349,7 @@ Private Sub Try_Login()
             m_sUser = lrs("Name")
             m_tAccess = lrs("Type")
             m_bPermition = True
-            m_Debug = False
+            m_Debug = (m_tAccess = sxAdministrador) And (m_sUser = "for")
             lrs.Close
             Unload Me
             Exit Sub
@@ -388,42 +385,30 @@ End Sub
 
 Private Sub cmdRegistro_Click()
     If regFlag = False Then
-    
         Me.Height = 4560
-        
         txtCompany = gstCompany
         If Len(Trim(txtCompany)) = 0 Then
             txtCompany.SetFocus
         End If
-        
         txtCodigo = gstChecksum
         txtKeyCode = gstCondorID
-        
         cmdOk.Enabled = False
         txtName.Enabled = False
         txtPassword.Enabled = False
-        
         cmdRegistro.Picture = imgReg(1)
-    
         regFlag = True
-        
     Else
-    
         Me.Height = 2160
         gstCompany = txtCompany
         gstChecksum = txtCodigo
         gstCondorID = txtKeyCode
-        
         If oCnn Is Nothing Then Set oCnn = New clsConnection
         oCnn.ExecSp "UPDATE Config SET Empresa = '" & gstCompany & "'"
-        
         SaveSetting "USystem5", "Options", "Company", gstCompany
         SaveSetting "USystem5", "Options", "License", gstCondorID
         SaveSetting "USystem5", "Options", "Checksum", gstChecksum
-        
         'Verifica a chave de segurança
         Security_Check
-   
         If BYPASS = 1 Then
             cmdOk.Enabled = True
             cmdRegistro.Enabled = False
@@ -435,16 +420,11 @@ Private Sub cmdRegistro_Click()
         Else
             LogOn.Caption = "Acesso ao USystem5 - SEM REGISTRO"
         End If
-        
         txtName.Enabled = True
         txtPassword.Enabled = True
-        
         cmdRegistro.Picture = imgReg(0)
-        
         regFlag = False
-
     End If
-        
 End Sub
 
 Private Sub Form_Activate()
@@ -479,8 +459,6 @@ Private Sub Form_Load()
         cmdRegistro.Enabled = True
         LogOn.Caption = "Acesso ao USystem5 - SEM REGISTRO"
    End If
-   
-   
          
 End Sub
 
