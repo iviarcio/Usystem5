@@ -4,7 +4,7 @@ Object = "{A4749554-0441-4E64-8A03-3323601631C7}#1.0#0"; "LaVolpeAlphaImg2.ocx"
 Begin VB.Form frmLastEvents 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Últimos Eventos"
-   ClientHeight    =   5445
+   ClientHeight    =   6690
    ClientLeft      =   2265
    ClientTop       =   2565
    ClientWidth     =   11790
@@ -23,9 +23,217 @@ Begin VB.Form frmLastEvents
    MaxButton       =   0   'False
    MinButton       =   0   'False
    PaletteMode     =   1  'UseZOrder
-   ScaleHeight     =   5445
+   ScaleHeight     =   6690
    ScaleWidth      =   11790
    ShowInTaskbar   =   0   'False
+   Begin VB.ComboBox lstTipoGrupo 
+      BackColor       =   &H0080FFFF&
+      Height          =   315
+      ItemData        =   "LastEvents.frx":0442
+      Left            =   3640
+      List            =   "LastEvents.frx":0444
+      Style           =   2  'Dropdown List
+      TabIndex        =   11
+      Top             =   5700
+      Width           =   4695
+   End
+   Begin VB.CheckBox chkGrupo 
+      Caption         =   "Mostrar somente eventos do grupo:"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00800000&
+      Height          =   375
+      Left            =   120
+      TabIndex        =   10
+      Top             =   5640
+      Width           =   3495
+   End
+   Begin VB.Frame fraKind 
+      Caption         =   "Categoria de Evento "
+      Height          =   735
+      Left            =   1440
+      TabIndex        =   2
+      Top             =   4800
+      Width           =   10095
+      Begin VB.OptionButton optKind 
+         Caption         =   "Inatividade"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00800080&
+         Height          =   315
+         Index           =   7
+         Left            =   8280
+         TabIndex        =   12
+         Top             =   240
+         Width           =   1560
+      End
+      Begin VB.OptionButton optKind 
+         Caption         =   "Reset"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00800080&
+         Height          =   315
+         Index           =   6
+         Left            =   7200
+         TabIndex        =   9
+         Top             =   240
+         Width           =   960
+      End
+      Begin VB.OptionButton optKind 
+         Caption         =   "Link"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00800080&
+         Height          =   315
+         Index           =   5
+         Left            =   6015
+         TabIndex        =   8
+         Top             =   240
+         Width           =   1200
+      End
+      Begin VB.OptionButton optKind 
+         Caption         =   "Tampa"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00800080&
+         Height          =   315
+         Index           =   4
+         Left            =   4845
+         TabIndex        =   7
+         Top             =   240
+         Width           =   1200
+      End
+      Begin VB.OptionButton optKind 
+         Caption         =   "Rede AC"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00800080&
+         Height          =   315
+         Index           =   3
+         Left            =   3660
+         TabIndex        =   6
+         Top             =   240
+         Width           =   1200
+      End
+      Begin VB.OptionButton optKind 
+         Caption         =   "Bateria"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00800080&
+         Height          =   315
+         Index           =   2
+         Left            =   2475
+         TabIndex        =   5
+         Top             =   240
+         Width           =   1200
+      End
+      Begin VB.OptionButton optKind 
+         Caption         =   "Alarme"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00800080&
+         Height          =   315
+         Index           =   0
+         Left            =   120
+         TabIndex        =   4
+         Top             =   240
+         Value           =   -1  'True
+         Width           =   1200
+      End
+      Begin VB.OptionButton optKind 
+         Caption         =   "Ruído"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00800080&
+         Height          =   315
+         Index           =   1
+         Left            =   1305
+         TabIndex        =   3
+         Top             =   240
+         Width           =   1200
+      End
+   End
+   Begin VB.CheckBox chkKind 
+      Caption         =   "Filtrar por:"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00800000&
+      Height          =   375
+      Left            =   120
+      TabIndex        =   1
+      Top             =   4920
+      Width           =   2175
+   End
    Begin TrueOleDBGrid80.TDBGrid tdbg1 
       Height          =   4575
       Left            =   0
@@ -649,27 +857,38 @@ Begin VB.Form frmLastEvents
       _StyleDefs(80)  =   "Named:id=76:FilterBar"
       _StyleDefs(81)  =   ":id=76,.parent=29"
    End
-   Begin LaVolpeAlphaImg.AlphaImgCtl cmdPrint 
+   Begin LaVolpeAlphaImg.AlphaImgCtl cmdOk 
       Height          =   720
-      Left            =   9720
-      ToolTipText     =   "Relatório dos últimos eventos"
-      Top             =   4680
+      Left            =   8960
+      ToolTipText     =   "Refresh"
+      Top             =   5840
       Width           =   720
       _ExtentX        =   1270
       _ExtentY        =   1270
-      Image           =   "LastEvents.frx":0442
-      Effects         =   "LastEvents.frx":15ED
+      Image           =   "LastEvents.frx":0446
+      Effects         =   "LastEvents.frx":0FE5
+   End
+   Begin LaVolpeAlphaImg.AlphaImgCtl cmdPrint 
+      Height          =   720
+      Left            =   10000
+      ToolTipText     =   "Relatório dos últimos eventos"
+      Top             =   5840
+      Width           =   720
+      _ExtentX        =   1270
+      _ExtentY        =   1270
+      Image           =   "LastEvents.frx":0FFD
+      Effects         =   "LastEvents.frx":21A8
    End
    Begin LaVolpeAlphaImg.AlphaImgCtl cmdExit 
       Height          =   720
-      Left            =   10920
+      Left            =   11000
       ToolTipText     =   "Fechar Visualização dos últimos eventos"
-      Top             =   4680
+      Top             =   5840
       Width           =   720
       _ExtentX        =   1270
       _ExtentY        =   1270
-      Image           =   "LastEvents.frx":1605
-      Effects         =   "LastEvents.frx":230A
+      Image           =   "LastEvents.frx":21C0
+      Effects         =   "LastEvents.frx":2EC5
    End
 End
 Attribute VB_Name = "frmLastEvents"
@@ -703,21 +922,55 @@ Private Sub cmdExit_MouseExit()
    cmdExit.SetRedraw = True
 End Sub
 
+Private Sub cmdOk_Click()
+    Event_Refresh
+End Sub
+
+Private Sub cmdOk_MouseEnter()
+   cmdOk.SetRedraw = False
+   cmdOk.GrayScale = lvicSepia
+   cmdOk.LightnessPct = -20
+   cmdOk.SetRedraw = True
+End Sub
+
+Private Sub cmdOk_MouseExit()
+   cmdOk.SetRedraw = False
+   cmdOk.GrayScale = lvicNoGrayScale
+   cmdOk.LightnessPct = 0
+   cmdOk.SetRedraw = True
+End Sub
+
 Private Sub cmdPrint_Click()
 
    Screen.MousePointer = vbHourglass
    Dim frm As New frmViewReport9
    frm.SetTipo = g_iRptUEventos
    If fEntity Then
-      frm.SetSelection = "{fk_Entity} = " & NEntity & " AND {Date_Event} >= DateTime (" & Year(lastDate) & _
+      frm.SetSelection = "{C_Event.fk_Entity} = " & NEntity & " AND {C_Event.Date_Event} >= DateTime (" & Year(lastDate) & _
                               ", " & Month(lastDate) & ", " & Day(lastDate) & ")"
    Else
-      frm.SetSelection = "{Date_Event} >= DateTime (" & Year(lastDate) & _
+      frm.SetSelection = "{C_Event.Date_Event} >= DateTime (" & Year(lastDate) & _
                               ", " & Month(lastDate) & ", " & Day(lastDate) & ")"
    End If
+   
+    If chkKind.Value = vbChecked Then
+        ' Find the current evKind
+        Dim idx As Integer
+        For idx = 0 To 7
+            If optKind(idx) Then
+                Exit For
+            End If
+        Next
+        frm.SetKindEvent = idx
+    Else
+        frm.SetKindEvent = -1 ' No filter
+    End If
+
+   On Error Resume Next
    frm.WindowState = vbMaximized
    frm.Show
    Screen.MousePointer = vbDefault
+   On Error GoTo 0
    
 End Sub
 
@@ -736,6 +989,27 @@ Private Sub cmdPrint_MouseExit()
 End Sub
 
 Private Sub Form_Activate()
+    LoadGrupo
+    Event_Refresh
+End Sub
+
+Private Sub LoadGrupo()
+    ' First, insert the name "Geral"
+    lstTipoGrupo.AddItem ("Geral (não especificado)")
+    Dim rsGrupo As ADODB.Recordset
+    Set rsGrupo = New ADODB.Recordset
+    rsGrupo.CursorLocation = adUseClient
+    rsGrupo.CursorType = adOpenStatic
+    rsGrupo.LockType = adLockReadOnly
+    rsGrupo.Open "Select * From Grupo", cnDB
+    While Not rsGrupo.EOF
+       lstTipoGrupo.AddItem (rsGrupo("Descrição"))
+       rsGrupo.MoveNext
+    Wend
+    rsGrupo.Close
+End Sub
+
+Private Sub Event_Refresh()
    Dim cE As clsEvent
    Dim cM As clsModule
    Dim mRow As Integer
@@ -751,8 +1025,18 @@ Private Sub Form_Activate()
       For Each cE In lastEvents
          With cE
             On Error Resume Next
+            If chkKind.Value = vbChecked Then
+                If Not optKind(.evKind) Then
+                    GoTo lblNext
+                End If
+            End If
             mList(mRow, 0) = .sUIDo
             Set cM = lstModule.Item(.sUIDo)
+            If chkGrupo.Value = vbChecked Then
+                If cM.grupo <> lstTipoGrupo.ListIndex Then
+                    GoTo lblNext
+                End If
+            End If
             mList(mRow, 1) = .evDescr
             mList(mRow, 2) = cM.mLocal
             mList(mRow, 3) = strTipo(.evTipo)
@@ -763,6 +1047,7 @@ Private Sub Form_Activate()
             On Error GoTo 0
          End With
          mRow = mRow + 1
+lblNext:
       Next
       mList.QuickSort 0, mRow - 1, 4, XORDER_DESCEND, XTYPE_DATE, 5, XORDER_DESCEND, XTYPE_DATE
       lastDate = mList(mRow - 1, 4)

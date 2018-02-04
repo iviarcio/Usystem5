@@ -652,6 +652,35 @@ Begin VB.Form frmDevices
       _StyleDefs(84)  =   "Named:id=84:FilterBar"
       _StyleDefs(85)  =   ":id=84,.parent=29"
    End
+   Begin VB.Label Label1 
+      Caption         =   $"Devices.frx":0442
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00800000&
+      Height          =   615
+      Left            =   1320
+      TabIndex        =   2
+      Top             =   5280
+      Width           =   8415
+   End
+   Begin LaVolpeAlphaImg.AlphaImgCtl cmdRefresh 
+      Height          =   720
+      Left            =   240
+      ToolTipText     =   "Atualizar Dispositivos não Cadastrados"
+      Top             =   5140
+      Width           =   720
+      _ExtentX        =   1270
+      _ExtentY        =   1270
+      Image           =   "Devices.frx":04F9
+      Effects         =   "Devices.frx":12E9
+   End
    Begin LaVolpeAlphaImg.AlphaImgCtl cmdPrint 
       Height          =   720
       Left            =   10680
@@ -660,8 +689,8 @@ Begin VB.Form frmDevices
       Width           =   720
       _ExtentX        =   1270
       _ExtentY        =   1270
-      Image           =   "Devices.frx":0442
-      Effects         =   "Devices.frx":15ED
+      Image           =   "Devices.frx":1301
+      Effects         =   "Devices.frx":24AC
    End
    Begin LaVolpeAlphaImg.AlphaImgCtl cmdExit 
       Height          =   720
@@ -671,8 +700,8 @@ Begin VB.Form frmDevices
       Width           =   720
       _ExtentX        =   1270
       _ExtentY        =   1270
-      Image           =   "Devices.frx":1605
-      Effects         =   "Devices.frx":230A
+      Image           =   "Devices.frx":24C4
+      Effects         =   "Devices.frx":31C9
    End
 End
 Attribute VB_Name = "frmDevices"
@@ -684,6 +713,27 @@ Option Explicit
 
 Private mList As XArrayDB
 Private cD As clsDevice
+
+Private Sub cmdRefresh_Click()
+    Set lstDevice = Nothing
+    Set lstDevice = New Collection
+    DoEvents
+    Device_Refresh
+End Sub
+
+Private Sub cmdRefresh_MouseEnter()
+   cmdRefresh.SetRedraw = False
+   cmdRefresh.GrayScale = lvicSepia
+   cmdRefresh.LightnessPct = -20
+   cmdRefresh.SetRedraw = True
+End Sub
+
+Private Sub cmdRefresh_MouseExit()
+   cmdRefresh.SetRedraw = False
+   cmdRefresh.GrayScale = lvicNoGrayScale
+   cmdRefresh.LightnessPct = 0
+   cmdRefresh.SetRedraw = True
+End Sub
 
 Private Sub cmdExit_Click()
    Unload Me
@@ -758,6 +808,10 @@ Private Sub cmdPrint_MouseExit()
 End Sub
 
 Private Sub Form_Activate()
+    Device_Refresh
+End Sub
+
+Private Sub Device_Refresh()
    Dim mRow As Integer
    Dim mCol As Integer
    Set mList = Nothing

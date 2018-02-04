@@ -101,21 +101,19 @@ Public Sub EventAdd(fEvent As clsEvent)
    lcmd.CommandType = adCmdText
    
    If fEvent.evCritico Then
-   lcmd.CommandText = "INSERT INTO Critico (fk_Entity, Descr_Entity, fk_Sensor, Descr_Sensor, " & _
-                      "Tipo_Sensor, Date_Event, Hour_Event, Descr_Event, crKind, crUser, crAcao, crObs, crTreat) VALUES (" & _
-                      cM.mEntity & ",'" & fEvent.evDescr & "', '" & cM.UID & "', '" & cM.mLocal & "','" & _
-                      strTipo(cM.mTipo) & "','" & fEvent.evDate & "','" & fEvent.evDate & _
+   lcmd.CommandText = "INSERT INTO Critico (fk_Entity, fk_Sensor, Date_Event, Hour_Event, Descr_Event, crKind, crUser, crAcao, crObs, crTreat) VALUES (" & _
+                      cM.mEntity & ", '" & cM.UID & "', '" & fEvent.evDate & "','" & fEvent.evDate & _
                       "', '" & fEvent.evStr & "', " & fEvent.evScope & ", '" & fEvent.evUser & "', '" & _
                       fEvent.evAcao & "', '" & fEvent.evObs & "', '" & fEvent.evTreat & "')"
    
    Else
-   lcmd.CommandText = "INSERT INTO Event (fk_Entity, Descr_Entity, fk_Sensor, Descr_Sensor, " & _
-                      "Tipo_Sensor, Date_Event, Hour_Event, Descr_Event, kind_Event) VALUES (" & _
-                      cM.mEntity & ",'" & fEvent.evDescr & "', '" & cM.UID & "', '" & cM.mLocal & "','" & _
-                      strTipo(cM.mTipo) & "','" & fEvent.evDate & "','" & fEvent.evDate & _
+   lcmd.CommandText = "INSERT INTO Event (fk_Entity, fk_Sensor, Date_Event, Hour_Event, Descr_Event, kind_Event) VALUES (" & _
+                      cM.mEntity & ", '" & cM.UID & "', '" & fEvent.evDate & "', '" & fEvent.evDate & _
                       "','" & fEvent.evStr & "', " & fEvent.evKind & ")"
    End If
    lcmd.Execute
+
+   
 End Sub
 
 Public Function GenerateId() As Integer
@@ -212,15 +210,15 @@ Public Sub Dump_Entity_Status(ByVal fOpen As Boolean)
             Set lPiso = lstPiso.Item(CStr(.floor))
             If fOpen Then
                If .hasAccessOpen Then
-                  lcmd.CommandText = "INSERT INTO AccessOpen (fk_Entity, Report, Descr_Entity, Descr_Floor, has_Access, " & _
-                     "Date_Open, Date_Open_Last) VALUES (" & .vId & ", " & lreport & ", '" & .vDescr & "', '" & _
+                  lcmd.CommandText = "INSERT INTO AccessOpen (fk_Entity, Report, Descr_Floor, has_Access, " & _
+                     "Date_Open, Date_Open_Last) VALUES (" & .vId & ", " & lreport & ", '" & _
                      lPiso.rCaption & "', " & .hasAccessOpen & ", '" & .OpenTime & "', '" & .OpenLast & "')"
                   lcmd.Execute
                End If
             Else
                If .hasAccessClose Then
-                   lcmd.CommandText = "INSERT INTO AccessClose (fk_Entity, Report, Descr_Entity, Descr_Floor, has_Access, " & _
-                     "Date_Close, Date_Close_Last) VALUES (" & .vId & ", " & lreport & ", '" & .vDescr & "', '" & _
+                   lcmd.CommandText = "INSERT INTO AccessClose (fk_Entity, Report, Descr_Floor, has_Access, " & _
+                     "Date_Close, Date_Close_Last) VALUES (" & .vId & ", " & lreport & ", '" & _
                      lPiso.rCaption & "', " & .hasAccessClose & ", '" & .CloseTime & "', '" & .CloseLast & "')"
                   lcmd.Execute
                 End If

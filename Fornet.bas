@@ -207,6 +207,7 @@ Public strTipo(0 To 8) As String
 Public strStatus(0 To 5) As String
 Public strModo(0 To 3) As String
 Public strInfo(0 To 1) As String
+Public strKind(0 To 7) As String
 
 'Constantes utilizadas nas caixas de mensagens
 Public Const sxQuestion = vbYesNo + vbQuestion + vbDefaultButton2
@@ -568,6 +569,16 @@ Private Sub Ctes_Init()
    m_sStop(1) = "1.5"
    m_sStop(2) = "2"
    
+    strKind(0) = "Alarme"
+    strKind(1) = "Ruído Excessivo"
+    strKind(2) = "Bateria Fraca"
+    strKind(3) = "Perda de Rede AC"
+    strKind(4) = "Vandalismo (Tamper)"
+    strKind(5) = "Falha de Link"
+    strKind(6) = "Reset no Serial"
+    strKind(7) = "Falha de Inatividade"
+      
+   
    cColor(0) = vbRed
    cColor(1) = &HFFFF80  'vbBlue
    cColor(2) = vbYellow
@@ -713,6 +724,7 @@ Private Sub Entity_Populate()
                .user = lrsModule("user_cftv")
                .senha = lrsModule("senha")
             .popup = lrsModule("popup")
+            .NivelSinal = "46"   'Start with max signal level: (&H46 -&H1E)/5
             If IsNull(lrsModule("grupo")) Then
                 .grupo = 0
             Else
@@ -823,42 +835,33 @@ Private Sub Event_Populate()
    rsEvent.CursorLocation = adUseClient
    rsEvent.CursorType = adOpenStatic
    rsEvent.LockType = adLockReadOnly
-   rsEvent.Open "SELECT TOP 100 * FROM Event INNER JOIN (Entity INNER JOIN Sensor ON Entity.cp_Entity = Sensor.fk_Entity)" & _
-   " ON (Event.fk_Sensor = Sensor.Serial_Number) AND (Event.fk_Entity = Entity.cp_Entity) ORDER BY Date_Event DESC, Hour_Event DESC", cnDB
+   rsEvent.Open "SELECT TOP 2000 * FROM Event INNER JOIN (Entity INNER JOIN Sensor ON Entity.cp_Entity = Sensor.fk_Entity)" & _
+   " ON (Event.fk_Sensor = Sensor.UID) AND (Event.fk_Entity = Entity.cp_Entity) ORDER BY Date_Event DESC, Hour_Event DESC", cnDB
 
-'  Design the lstEvent collection
+'SELECT Event.cp_Event, Entity.Descr_Entity, Sensor.Tipo_Sensor, Sensor.Local_Sensor, Event.fk_Entity, Event.Date_Event, Event.Descr_Event, Event.Hour_Event, Event.Kind_Event
+'FROM (Entity INNER JOIN Event ON Entity.cp_Entity = Event.fk_Entity) INNER JOIN Sensor ON Event.fk_Sensor = Sensor.UID;
+
    On Error Resume Next
    Dim nCount As Integer
    nCount = 0
    While Not rsEvent.EOF
-      nCount = nCount + 1
-      If nCount <= 100 Then
-         Set tEvent = New clsEvent
-         tEvent.sUIDo = rsEvent("fk_Sensor")
-         tEvent.evDate = rsEvent("Date_Event")
-         rsTipo = rsEvent("Tipo_Sensor")
-         For idxTipo = 0 To 8
-            If rsTipo = strTipo(idxTipo) Then
-               tEvent.evTipo = idxTipo
-               Exit For
-            End If
-         Next idxTipo
-         tEvent.evStr = rsEvent("Descr_Event")
-         tEvent.evDescr = rsEvent("Descr_Entity")
-         If Not IsNull(rsEvent("kind_Event")) Then
-            tEvent.evKind = rsEvent("kind_Event")
-         Else
-            tEvent.evKind = kevAlarme
-         End If
-         lstEvent.Add tEvent
-         Set tEntity = lstEntity.Item(CStr(rsEvent("fk_Entity")))
-         tEntity.EventAdd tEvent
-         rsEvent.MoveNext
-      Else
-         rsEvent.MoveLast
-         rsEvent.MoveNext
-      End If
-      IncProgress
+        nCount = nCount + 1
+        Set tEvent = New clsEvent
+        tEvent.sUIDo = rsEvent("fk_Sensor")
+        tEvent.evDate = rsEvent("Date_Event")
+        tEvent.evTipo = rsEvent("Tipo_Sensor")
+        tEvent.evStr = rsEvent("Descr_Event")
+        tEvent.evDescr = rsEvent("Descr_Entity")
+        If Not IsNull(rsEvent("kind_Event")) Then
+           tEvent.evKind = rsEvent("kind_Event")
+        Else
+           tEvent.evKind = kevAlarme
+        End If
+        lstEvent.Add tEvent
+        Set tEntity = lstEntity.Item(CStr(rsEvent("fk_Entity")))
+        tEntity.EventAdd tEvent
+        rsEvent.MoveNext
+        IncProgress
    Wend
    rsEvent.Close
    On Error GoTo 0

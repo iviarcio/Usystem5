@@ -105,7 +105,9 @@ End Sub
 
 Public Property Let NivelSinal(fNewValue As String)
     On Error GoTo Signal_Error
-    nivel_Sinal = Int("&H" & fNewValue) - &H1E
+'    nivel_Sinal = Int("&H" & fNewValue) - &H1E
+    nivel_Sinal = (Int("&H" + fNewValue) - 30) / 5
+    If nivel_Sinal < 0 Then nivel_Sinal = 1
     If nivel_Sinal > 8 Then nivel_Sinal = 8
     Exit Property
 Signal_Error:

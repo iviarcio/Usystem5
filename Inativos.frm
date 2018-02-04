@@ -3,7 +3,7 @@ Object = "{562E3E04-2C31-4ECE-83F4-4017EEE51D40}#8.0#0"; "todg8.ocx"
 Object = "{A4749554-0441-4E64-8A03-3323601631C7}#1.0#0"; "LaVolpeAlphaImg2.ocx"
 Begin VB.Form frmInativos 
    BorderStyle     =   3  'Fixed Dialog
-   Caption         =   "Relação de Zonas Inativas"
+   Caption         =   "Relação dos Dispositivos Inativos"
    ClientHeight    =   5460
    ClientLeft      =   2265
    ClientTop       =   2565
@@ -709,8 +709,8 @@ Private Sub Form_Activate()
    hasInativos = False
    For Each cM In lstModule
       With cM
-         If .mChkAtiv And Not .mStatAtiv Then
-            hasInativos = True
+'        If .mChkAtiv And Not .mStatAtiv Then
+         If Not .mStatAtiv Then
             Set cE = lstEntity.Item(CStr(.mEntity))
             mList(mRow, 0) = cE.vDescr
             mList(mRow, 1) = .mLocal
@@ -722,6 +722,9 @@ Private Sub Form_Activate()
          End If
       End With
    Next
+   
+   If mRow > 0 Then hasInativos = True
+   
    mList.ReDim 0, mRow - 1, 0, 5
    mList.QuickSort 0, mRow - 1, 1, XORDER_ASCEND, XTYPE_BYTE, 2, XORDER_ASCEND, XTYPE_BYTE
    tdbg1.Array = mList

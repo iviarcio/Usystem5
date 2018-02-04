@@ -537,7 +537,7 @@ Begin VB.MDIForm ForNet
             Style           =   5
             Object.Width           =   1411
             MinWidth        =   1411
-            TextSave        =   "19:46"
+            TextSave        =   "16:43"
          EndProperty
          BeginProperty Panel5 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Bevel           =   0
@@ -665,14 +665,8 @@ Begin VB.MDIForm ForNet
    End
    Begin VB.Menu mnuCadastro 
       Caption         =   "&Cadastros"
-      Begin VB.Menu mnuSep14 
-         Caption         =   "-"
-      End
-      Begin VB.Menu mnuRCadLocais 
-         Caption         =   "Relatório de Lojas"
-      End
-      Begin VB.Menu mnuRCadZonas 
-         Caption         =   "Relatório de Sensores"
+      Begin VB.Menu mnuCGrupos 
+         Caption         =   "de Grupos"
       End
       Begin VB.Menu mnuSep15 
          Caption         =   "-"
@@ -681,16 +675,13 @@ Begin VB.MDIForm ForNet
          Caption         =   "Serviços (não disponível)"
          Enabled         =   0   'False
       End
-      Begin VB.Menu mnuSep16 
-         Caption         =   "-"
-      End
       Begin VB.Menu mnuCRonda 
          Caption         =   "Rondas (não disponível)"
          Enabled         =   0   'False
       End
    End
    Begin VB.Menu mnuInform 
-      Caption         =   "&Relatórios"
+      Caption         =   "&Visualizar"
       Begin VB.Menu mnuLastEvents 
          Caption         =   "Últimos Eventos"
       End
@@ -705,16 +696,6 @@ Begin VB.MDIForm ForNet
       End
       Begin VB.Menu mnuRLClose 
          Caption         =   "Locais/Lojas Fechadas"
-      End
-      Begin VB.Menu mnuSep9 
-         Caption         =   "-"
-      End
-      Begin VB.Menu mnuRPTGeral 
-         Caption         =   "Gerais"
-      End
-      Begin VB.Menu mnuRonda 
-         Caption         =   "Rondas (não disponível)"
-         Enabled         =   0   'False
       End
       Begin VB.Menu mnuSep11 
          Caption         =   "-"
@@ -751,6 +732,18 @@ Begin VB.MDIForm ForNet
       End
       Begin VB.Menu mnuBaseStatus 
          Caption         =   "Módulos não Cadastrados"
+      End
+   End
+   Begin VB.Menu mnuRelatorios 
+      Caption         =   "&Relatórios"
+      Begin VB.Menu mnuRPTGeral 
+         Caption         =   "Gerais"
+      End
+      Begin VB.Menu mnuRCadLocais 
+         Caption         =   "de Lojas Cadastradas"
+      End
+      Begin VB.Menu mnuRCadZonas 
+         Caption         =   "de Sensores Cadastrados"
       End
    End
    Begin VB.Menu mnuMonitorActivate 
@@ -1289,7 +1282,7 @@ Private Sub SimulaEventos()
    ct = InputBox("case number: ", "0..4=Receiver, 5..9=Repeater, 10..16=Sensor")
    numEvents = InputBox("Número de Eventos:", "Número de Eventos (default=1)", 1)
    
-   Sensor(0) = InputBox("Número do Sensor:", "Alarme", "B2970195")
+   Sensor(0) = InputBox("Número do Sensor:", "Alarme", "B28BCBA9")
    
    i = 0
      For j = 1 To numEvents
@@ -1333,12 +1326,12 @@ Private Sub SimulaEventos()
          Case 13:
             DadosHex = "1330" + Sensor(i) + "00FCAD4A2800082626"  'Reset. -08+18= Reset
          Case 14:
-            DadosHex = "1330" + Sensor(i) + "00FCAD4A2801004747"  'Alarme 1
+            DadosHex = "1330" + Sensor(i) + "00FCAD4A2801003547"  'Alarme 1
             ct = 16
          Case 15:
             DadosHex = "1330" + Sensor(i) + "00FCAD4A2802002226"  'Alarme 2.
          Case 16:
-            DadosHex = "1330" + Sensor(i) + "00FCAD4A2800002626"  'Status Ok.
+            DadosHex = "1330" + Sensor(i) + "00FCAD4A2800004726"  'Status Ok.
             ct = 14
       End Select
       
@@ -1369,6 +1362,10 @@ Private Sub mnuBottom_Click()
    mnuBottom.Checked = True
    m_bPisoLeft = False
    Pisos_Setup
+End Sub
+
+Private Sub mnuCGrupos_Click()
+    MsgBox "O cadastro de Grupos está em desenvolvimento.", vbInformation + vbOKOnly
 End Sub
 
 Private Sub mnuCritico_Click()
@@ -1608,35 +1605,35 @@ End Sub
 
 Private Sub mnuIZEmergencia_Click()
    frmStatus.fZona = s_Emergencia
-   frmStatus.Caption = "Situação corrente das Zonas de Emergência"
+   frmStatus.Caption = "Situação corrente dos Sensores de Emergência"
    Set frmStatus.localModule = lstModule
    frmStatus.Show
 End Sub
 
 Private Sub mnuIZIncendio_Click()
    frmStatus.fZona = s_Incendio
-   frmStatus.Caption = "Situação corrente das Zonas de Incêndio"
+   frmStatus.Caption = "Situação corrente dos Sensores de Incêndio"
    Set frmStatus.localModule = lstModule
    frmStatus.Show
 End Sub
 
 Private Sub mnuIZIntrusao_Click()
    frmStatus.fZona = s_Intrusao
-   frmStatus.Caption = "Situação corrente das Zonas de Intrusão"
+   frmStatus.Caption = "Situação corrente dos Sensores de Intrusão"
    Set frmStatus.localModule = lstModule
    frmStatus.Show
 End Sub
 
 Private Sub mnuIZPanico_Click()
    frmStatus.fZona = s_Panico
-   frmStatus.Caption = "Situação corrente das Zonas de Pânico"
+   frmStatus.Caption = "Situação corrente dos Sensores de Pânico"
    Set frmStatus.localModule = lstModule
    frmStatus.Show
 End Sub
 
 Private Sub mnuIZSistema_Click()
    frmStatus.fZona = s_Sistema
-   frmStatus.Caption = "Situação corrente das Zonas de Sistema"
+   frmStatus.Caption = "Situação corrente dos Sensores de Sistema"
    Set frmStatus.localModule = lstModule
    frmStatus.Show
 End Sub

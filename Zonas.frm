@@ -720,11 +720,8 @@ Private Sub cmdPrint_Click()
       With cM
          Set fE = lstEntity.Item(CStr(.mEntity))
          Set fP = lstPiso.Item(CStr(fE.floor))
-         lcmd.CommandText = "INSERT INTO StatusCorrente (Numero_Sensor, Tipo_Sensor, " & _
-               "Local_Sensor, Local_Entity, Descr_Floor, Status, Sinal, Bateria, Tampa) VALUES (" & _
-               .mNumero & ", " & .mTipo & ", '" & .mLocal & "', '" & fE.vDescr & _
-               "', '" & fP.rCaption & "', " & .SZona & ", " & .NivelSinal & ", " & .SLowBat & _
-               ", " & .STampa & ")"
+         lcmd.CommandText = "INSERT INTO StatusCorrente (Numero_Sensor, Status, Sinal, Bateria, Tampa) VALUES (" & _
+               .mNumero & ", " & .SZona & ", " & .NivelSinal & ", " & .SLowBat & ", " & .STampa & ")"
          lcmd.Execute
       End With
    Next

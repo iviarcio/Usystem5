@@ -24,6 +24,7 @@ Begin VB.Form frmViewReport9
    Moveable        =   0   'False
    ScaleHeight     =   8055
    ScaleWidth      =   11775
+   WindowState     =   2  'Maximized
    Begin VB.PictureBox pctPrinterSettings 
       BorderStyle     =   0  'None
       BeginProperty Font 
@@ -150,17 +151,24 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+Private kindEvent As Integer
+
 Private intTipoRpt As Integer
 Private intTipoAction As Integer
+
 Private intWho As Long
+
 Private strSelection As String
+
 Private strDate As String
 Private strDataPeriodoIni As String
 Private strDataPeriodoFim As String
+
 Public OpenLow As String
 Public OpenHigh As String
 Public CloseLow As String
 Public CloseHigh As String
+
 Public DataEvt As String
 Public intervalo As String
 Public Intervalo2 As String
@@ -169,10 +177,10 @@ Public Ponto As Integer
 
 Private Sub Form_Load()
 
-   Dim success As Long
-
-   Left = 50
-   Top = 50
+    Dim success As Long
+    
+    Left = 50
+    Top = 50
    
    Screen.MousePointer = vbHourglass
    DoEvents
@@ -235,12 +243,19 @@ Private Sub Form_Load()
       Case g_iRptUEventos:
          success = SetWindowPos(frmReport.hWnd, HWND_NOTOPMOST, 0, 0, 0, 0, FLAGS)
          Hide
-
-         Set adors = oCnn.ExecSpGetRs("SELECT * FROM C_Event")
          Set Report = New RptUEventos
-         Report.ReportTitle = "Relatório: Últimos Eventos"
-         Me.Caption = "Relatório: Últimos Eventos"
-         Report.ParameterFields(1).AddCurrentValue gstCompany
+         If kindEvent = -1 Then
+            Set adors = oCnn.ExecSpGetRs("SELECT * FROM C_Event")
+            Report.ParameterFields(1).AddCurrentValue gstCompany
+            Report.ReportTitle = "Relatório: Últimos Eventos"
+            Me.Caption = "Relatório: Últimos Eventos"
+            Report.ParameterFields(2).AddCurrentValue "Relatório: Últimos Eventos"
+         Else
+            Set adors = oCnn.ExecSpGetRs("SELECT * FROM C_Event Where C_Event.Kind_Event = " & kindEvent & "")
+            Report.ReportTitle = "Relatório: Eventos de " + strKind(kindEvent)
+            Me.Caption = "Relatório: Eventos de " + strKind(kindEvent)
+            Report.ParameterFields(2).AddCurrentValue "Relatório: Eventos de " + strKind(kindEvent)
+         End If
          Report.Database.SetDataSource adors
           
       Case g_iRptSCZonas:
@@ -467,6 +482,10 @@ Private Sub Form_Resize()
    CRViewer1.Height = ScaleHeight
    CRViewer1.Width = ScaleWidth
 End Sub
+
+Public Property Let SetKindEvent(kev As Integer)
+    kindEvent = kev
+End Property
 
 Public Property Let SetTipo(tipo As Integer)
    intTipoRpt = tipo

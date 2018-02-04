@@ -725,11 +725,8 @@ Private Sub cmdPrint_Click()
             If .mTipo = fZona Then
                Set fE = lstEntity.Item(CStr(.mEntity))
                Set fP = lstPiso.Item(CStr(fE.floor))
-               lcmd.CommandText = "INSERT INTO StatusCorrente (Serial_Number, Numero_Sensor, Tipo_Sensor, " & _
-                     "Local_Sensor, Local_Entity, Descr_Floor, Status, Sinal, Bateria, Tampa) VALUES ('" & _
-                     .Serial_Number & "', " & .mNumero & ", " & .mTipo & ", '" & .mLocal & "', '" & fE.vDescr & _
-                     "', '" & fP.rCaption & "', " & .SZona & ", " & .NivelSinal & ", " & .SLowBat & _
-                     ", " & .STampa & ")"
+               lcmd.CommandText = "INSERT INTO StatusCorrente (Numero_Sensor, Status, Sinal, Bateria, Tampa) VALUES ('" & _
+                     .Serial_Number & "', " & .SZona & ", " & .NivelSinal & ", " & .SLowBat & ", " & .STampa & ")"
                lcmd.Execute
             End If
          End With
@@ -763,12 +760,23 @@ Private Sub cmdPrint_MouseExit()
    cmdPrint.SetRedraw = True
 End Sub
 
+Private Sub SetCaption()
+    If fZona >= 0 And fZona <= 6 Then
+        frmStatus.Caption = "Situação corrente dos Sensores de " + strTipo(fZona)
+    Else
+         frmStatus.Caption = "Situação corrente dos " + strTipo(fZona) + "s"
+    End If
+End Sub
+
 Private Sub Form_Activate()
    Dim cM As clsModule
    Dim cE As clsEntity
    Dim mRow As Integer
    Dim mCol As Integer
    Set mList = Nothing
+   
+   SetCaption
+   
    cmdPrint.Enabled = (localModule.Count >= 1)
    If localModule.Count >= 1 Then
       ' Allocate space for rows, 7 columns
